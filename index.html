@@ -9,48 +9,31 @@
     <style>
         body { background-color: #0f171e; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        .hero-gradient {
-            background: linear-gradient(to right, #0f171e 25%, rgba(15, 23, 30, 0.4) 60%, transparent 100%);
-        }
-        .bottom-vignette {
-            background: linear-gradient(to top, #0f171e 15%, transparent 100%);
-        }
+        .hero-gradient { background: linear-gradient(to right, #0f171e 25%, rgba(15, 23, 30, 0.4) 60%, transparent 100%); }
+        .bottom-vignette { background: linear-gradient(to top, #0f171e 15%, transparent 100%); }
 
         .top-10-number {
-            font-size: 10rem; 
-            line-height: 1; 
-            font-weight: 900; 
-            -webkit-text-stroke: 2px #556677; 
-            color: transparent;
-            margin-right: -45px; 
-            z-index: 10;
-            font-family: Arial, sans-serif;
+            font-size: 10rem; line-height: 1; font-weight: 900; 
+            -webkit-text-stroke: 2px #556677; color: transparent;
+            margin-right: -45px; z-index: 10; font-family: Arial, sans-serif;
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Icon Colors set to Blue */
         .sidebar-icon { color: #00a8e1; transition: all 0.3s; cursor: pointer; }
         .sidebar-icon:hover { color: #ffffff; transform: translateY(-2px); }
         
-        /* Navigation Styles */
         .active-nav { color: #ffffff; border-left: 3px solid #00a8e1; }
         .nav-item .nav-tooltip {
-            position: absolute;
-            left: 70px;
-            background: #00a8e1;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-            white-space: nowrap;
+            position: absolute; left: 70px; background: #00a8e1; color: white;
+            padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;
+            opacity: 0; pointer-events: none; transition: opacity 0.2s; white-space: nowrap;
         }
         .nav-item:hover .nav-tooltip { opacity: 1; }
+
+        /* Modal specific styles */
+        #details-modal { transition: all 0.4s ease; }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -69,29 +52,12 @@
 
     <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0f171e] z-50 border-r border-gray-800">
         <div class="text-blue-400 text-2xl font-bold italic tracking-tighter mb-12">EC</div>
-        
         <div class="flex flex-col items-center space-y-10 w-full">
             <div class="nav-item flex flex-col items-center w-full relative">
                 <i class="fa-solid fa-house text-[#808080] hover:text-white transition-all active-nav pl-2 text-xl"></i>
                 <span class="nav-tooltip">Home</span>
             </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-film text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
-                <span class="nav-tooltip">Movies</span>
             </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-image text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
-                <span class="nav-tooltip">Wallpapers</span>
-            </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-circle-question text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
-                <span class="nav-tooltip">Inquiries</span>
-            </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-magnifying-glass text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
-                <span class="nav-tooltip">Search</span>
-            </div>
-        </div>
     </nav>
 
     <section class="relative h-[90vh] ml-20 overflow-hidden">
@@ -105,31 +71,10 @@
             <div class="flex items-center space-x-2 text-blue-400 font-bold uppercase text-xs tracking-widest">
                 <i class="fa-solid fa-star"></i> <span>Premium Feature</span>
             </div>
-            
-            <div class="py-2">
-                <h1 class="text-7xl font-black tracking-tighter leading-none uppercase drop-shadow-2xl">
-                    Bloodhound<br>Season 2
-                </h1>
-            </div>
-            
-            <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
-                <span class="text-white">⭐ 4.9</span>
-                <span>2024</span>
-                <span>2h 15m</span>
-                <span class="border border-gray-600 px-1 rounded text-[10px]">PG-13</span>
-                <span class="text-blue-400 font-medium">Sci-Fi • Adventure • Mystery</span>
-            </div>
-
-            <p class="text-lg text-gray-300 leading-relaxed font-medium drop-shadow-md">
-                Embark on a visual journey through the cosmos. Eclipse Cinema brings you the latest in high-definition cinematography and storytelling from across the globe.
-            </p>
-            
+            <h1 class="text-7xl font-black tracking-tighter leading-none uppercase drop-shadow-2xl">Bloodhound<br>Season 2</h1>
             <div class="pt-4 flex space-x-4">
-                <button class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition flex items-center">
+                <button onclick="openModal()" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition flex items-center">
                     <i class="fa-solid fa-play mr-2"></i> Play Now
-                </button>
-                <button class="bg-gray-500/30 backdrop-blur-md text-white px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">
-                    Details
                 </button>
             </div>
         </div>
@@ -141,35 +86,83 @@
         </h3>
         
         <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
-            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+            <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openModal()">
                 <span class="top-10-number">1</span>
                 <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
-                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Film 1">
+                    <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full h-full object-cover" alt="Bloodhounds">
                 </div>
             </div>
-
-            <div class="flex items-center flex-shrink-0 group cursor-pointer">
-                <span class="top-10-number">2</span>
-                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
-                    <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Film 2">
-                </div>
             </div>
+    </main>
 
-            <div class="flex items-center flex-shrink-0 group cursor-pointer">
-                <span class="top-10-number">3</span>
-                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
-                    <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Film 3">
+    <div id="details-modal" class="fixed inset-0 z-[100] bg-[#0f171e] hidden overflow-y-auto">
+        <div class="p-8">
+            <button onclick="closeModal()" class="text-blue-400 hover:text-white mb-8 flex items-center transition">
+                <i class="fa-solid fa-circle-arrow-left text-3xl mr-3"></i> 
+                <span class="font-bold uppercase tracking-widest">Back to Movies</span>
+            </button>
+
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-10">
+                <div class="w-full md:w-1/3">
+                    <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full rounded-xl border border-gray-700 shadow-2xl" alt="Bloodhounds Poster">
                 </div>
-            </div>
 
-            <div class="flex items-center flex-shrink-0 group cursor-pointer">
-                <span class="top-10-number">4</span>
-                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
-                    <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Film 4">
+                <div class="w-full md:w-2/3 space-y-6">
+                    <h2 class="text-5xl font-black">Bloodhounds (2023)</h2>
+                    <p class="text-blue-400 text-lg font-bold">TV Series | Season 01 (Complete)</p>
+                    
+                    <div class="flex flex-wrap gap-4 items-center text-sm">
+                        <span class="bg-blue-600/20 text-blue-400 border border-blue-400 px-3 py-1 rounded">IMDb: 8.3</span>
+                        <span class="text-gray-400">⭐ 60 votes</span>
+                        <span class="text-gray-400"><i class="fa-solid fa-eye mr-1"></i> 36,920 views</span>
+                        <span class="text-gray-400">Year: 2023</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="text-gray-300"><span class="font-bold text-white">Genres:</span> Action & Adventure, Crime, Drama, Korea</p>
+                        <p class="text-gray-300"><span class="font-bold text-white">Episodes:</span> 01-08 (Complete)</p>
+                    </div>
+
+                    <hr class="border-gray-800">
+
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold flex items-center">
+                            <i class="fa-solid fa-download mr-2 text-blue-400"></i> Download Options
+                        </h4>
+                        
+                        <div class="grid gap-3">
+                            <a href="https://cinesubz.lk/api-rwjdzuehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdruehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdrwjdzuehbwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0a/ofadyn5zuh/" target="_blank" class="bg-gray-800 hover:bg-blue-600 p-4 rounded-lg transition flex justify-between items-center group">
+                                <span class="font-bold">Download Link 01 (480p)</span>
+                                <span class="text-sm opacity-60">350MB</span>
+                            </a>
+                            <a href="https://cinesubz.lk/api-rwjdzuehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdruehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdrwjdzuehbwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0a/m3fg7po3an/" target="_blank" class="bg-gray-800 hover:bg-blue-600 p-4 rounded-lg transition flex justify-between items-center">
+                                <span class="font-bold">Download Link 02 (720p)</span>
+                                <span class="text-sm opacity-60">650MB</span>
+                            </a>
+                            <a href="#" target="_blank" class="bg-gray-800 hover:bg-blue-600 p-4 rounded-lg transition flex justify-between items-center">
+                                <span class="font-bold">Download Link 03 (1080p)</span>
+                                <span class="text-sm opacity-60">1.3GB</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById('details-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevents scrolling behind the modal
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('details-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Re-enables scrolling
+        }
+    </script>
 
 </body>
 </html>
