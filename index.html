@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipse Cinema</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #0f171e; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Hero Section Gradients - Makes the image blend into the UI */
+        .hero-gradient {
+            background: linear-gradient(to right, #0f171e 25%, rgba(15, 23, 30, 0.4) 60%, transparent 100%);
+        }
+        .bottom-vignette {
+            background: linear-gradient(to top, #0f171e 15%, transparent 100%);
+        }
+
+        /* Top 10 Number Styling */
+        .top-10-number {
+            font-size: 10rem; 
+            line-height: 1; 
+            font-weight: 900; 
+            -webkit-text-stroke: 2px #556677; 
+            color: transparent;
+            margin-right: -45px; 
+            z-index: 10;
+            font-family: Arial, sans-serif;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .sidebar-icon { color: #808080; transition: color 0.3s; cursor: pointer; }
+        .sidebar-icon:hover { color: #ffffff; }
+        .active-nav { color: #ffffff; border-left: 3px solid #00a8e1; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-10 space-y-10 bg-[#0f171e] z-50 border-r border-gray-800">
+        <div class="text-blue-400 text-2xl font-bold italic tracking-tighter">EC</div>
+        <i class="fa-solid fa-magnifying-glass sidebar-icon"></i>
+        <i class="fa-solid fa-house sidebar-icon active-nav pl-2"></i>
+        <i class="fa-solid fa-box-archive sidebar-icon"></i>
+        <i class="fa-solid fa-user-circle sidebar-icon mt-auto text-2xl"></i>
+    </nav>
+
+    <section class="relative h-[85vh] ml-20 overflow-hidden">
+        
+        <div class="absolute inset-0 z-0">
+            <img src="images (2).jpeg" alt="The Batman Background" class="w-full h-full object-cover object-right">
+            <div class="hero-gradient absolute inset-0"></div>
+            <div class="bottom-vignette absolute inset-0"></div>
+        </div>
+
+        <div class="relative z-20 flex flex-col justify-center h-full px-16 max-w-3xl space-y-4">
+            <div class="flex items-center space-x-2 text-blue-400 font-bold uppercase text-xs tracking-widest">
+                <i class="fa-solid fa-check-circle"></i> <span>Included with Eclipse Cinema</span>
+            </div>
+            
+            <div class="py-2">
+                <h1 class="text-7xl font-black tracking-tighter leading-none uppercase drop-shadow-2xl">
+                    The<br>Batman
+                </h1>
+            </div>
+            
+            <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
+                <span class="text-white">⭐ 4.8</span>
+                <span>2022</span>
+                <span>2h 56m</span>
+                <span class="border border-gray-600 px-1 rounded text-[10px]">13+</span>
+                <span class="text-blue-400 font-medium">Action • Crime • Drama</span>
+            </div>
+
+            <p class="text-lg text-gray-300 leading-relaxed font-medium drop-shadow-md">
+                In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.
+            </p>
+        </div>
+    </section>
+
+    <main class="relative z-30 ml-20 -mt-20 px-16 pb-20">
+        <h3 class="text-2xl font-bold mb-6 flex items-center">
+            Top 10 in Movies <i class="fa-solid fa-chevron-right text-sm ml-3 text-gray-600"></i>
+        </h3>
+        
+        <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">1</span>
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsT-2OtzTR9ip3GE2kLxu842aehCgFLWX0HA&s" class="w-full h-full object-cover" alt="Batman Poster">
+                </div>
+            </div>
+
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">2</span>
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsT-2OtzTR9ip3GE2kLxu842aehCgFLWX0HA&s" class="w-full h-full object-cover" alt="Movie 2">
+                </div>
+            </div>
+
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">3</span>
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
+                    <img src="https://image.tmdb.org/t/p/w500/reX4YARuYhd6pY96nyqzG2fP6I9.jpg" class="w-full h-full object-cover" alt="Movie 3">
+                </div>
+            </div>
+
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">4</span>
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
+                    <img src="https://image.tmdb.org/t/p/w500/r7D47pajX90A7Y6v9l5P9o6vL0e.jpg" class="w-full h-full object-cover" alt="Movie 4">
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
