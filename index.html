@@ -9,7 +9,6 @@
     <style>
         body { background-color: #0f171e; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        /* Hero Section Gradients */
         .hero-gradient {
             background: linear-gradient(to right, #0f171e 25%, rgba(15, 23, 30, 0.4) 60%, transparent 100%);
         }
@@ -17,7 +16,6 @@
             background: linear-gradient(to top, #0f171e 15%, transparent 100%);
         }
 
-        /* Top 10 Number Styling */
         .top-10-number {
             font-size: 10rem; 
             line-height: 1; 
@@ -36,8 +34,8 @@
         .sidebar-icon:hover { color: #ffffff; }
         .active-nav { color: #ffffff; border-left: 3px solid #00a8e1; }
 
-        /* Tooltip style for sidebar */
-        .nav-tooltip {
+        /* Navigation Tooltips */
+        .nav-item .nav-tooltip {
             position: absolute;
             left: 70px;
             background: #00a8e1;
@@ -52,14 +50,31 @@
             white-space: nowrap;
         }
         .nav-item:hover .nav-tooltip { opacity: 1; }
+
+        /* Social Icon Hover Colors */
+        .fa-instagram:hover { color: #E1306C; }
+        .fa-facebook:hover { color: #1877F2; }
+        .fa-x-twitter:hover { color: #ffffff; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
+    <div class="fixed top-0 right-0 z-50 flex items-center space-x-6 px-8 py-6 bg-gradient-to-l from-[#0f171e] to-transparent">
+        <div class="flex items-center space-x-5 border-r border-gray-700 pr-6">
+            <a href="#" class="sidebar-icon"><i class="fa-brands fa-instagram text-xl"></i></a>
+            <a href="#" class="sidebar-icon"><i class="fa-brands fa-facebook text-xl"></i></a>
+            <a href="#" class="sidebar-icon"><i class="fa-brands fa-x-twitter text-xl"></i></a>
+        </div>
+        <div class="flex items-center space-x-3 cursor-pointer group">
+            <span class="text-sm font-bold text-gray-400 group-hover:text-white transition">My Account</span>
+            <i class="fa-solid fa-user-circle text-2xl text-blue-400"></i>
+        </div>
+    </div>
+
     <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0f171e] z-50 border-r border-gray-800">
-        <div class="text-blue-400 text-2xl font-bold italic tracking-tighter mb-10">EC</div>
+        <div class="text-blue-400 text-2xl font-bold italic tracking-tighter mb-12">EC</div>
         
-        <div class="flex flex-col items-center space-y-8 w-full flex-grow">
+        <div class="flex flex-col items-center space-y-10 w-full">
             <div class="nav-item flex flex-col items-center w-full relative">
                 <i class="fa-solid fa-house sidebar-icon active-nav pl-2 text-xl"></i>
                 <span class="nav-tooltip">Home</span>
@@ -83,16 +98,6 @@
             <div class="nav-item flex flex-col items-center w-full relative">
                 <i class="fa-solid fa-magnifying-glass sidebar-icon text-xl"></i>
                 <span class="nav-tooltip">Search</span>
-            </div>
-        </div>
-
-        <div class="mt-auto flex flex-col items-center space-y-5 pb-6 border-t border-gray-800 pt-6 w-full">
-            <a href="#" title="Instagram" class="sidebar-icon hover:text-pink-500"><i class="fa-brands fa-instagram text-xl"></i></a>
-            <a href="#" title="Facebook" class="sidebar-icon hover:text-blue-600"><i class="fa-brands fa-facebook text-xl"></i></a>
-            <a href="#" title="X (Twitter)" class="sidebar-icon hover:text-white"><i class="fa-brands fa-x-twitter text-xl"></i></a>
-            
-            <div class="pt-4">
-                <i class="fa-solid fa-user-circle sidebar-icon text-2xl text-blue-400"></i>
             </div>
         </div>
     </nav>
@@ -126,6 +131,15 @@
             <p class="text-lg text-gray-300 leading-relaxed font-medium drop-shadow-md">
                 In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.
             </p>
+            
+            <div class="pt-4 flex space-x-4">
+                <button class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition flex items-center">
+                    <i class="fa-solid fa-play mr-2"></i> Watch Now
+                </button>
+                <button class="bg-gray-500/30 backdrop-blur-md text-white px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">
+                    More Info
+                </button>
+            </div>
         </div>
     </section>
 
@@ -137,28 +151,28 @@
         <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
             <div class="flex items-center flex-shrink-0 group cursor-pointer">
                 <span class="top-10-number">1</span>
-                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
                     <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Batman">
                 </div>
             </div>
 
             <div class="flex items-center flex-shrink-0 group cursor-pointer">
                 <span class="top-10-number">2</span>
-                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
                     <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Movie 2">
                 </div>
             </div>
 
             <div class="flex items-center flex-shrink-0 group cursor-pointer">
                 <span class="top-10-number">3</span>
-                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
                     <img src="https://image.tmdb.org/t/p/w500/reX4YARuYhd6pY96nyqzG2fP6I9.jpg" class="w-full h-full object-cover" alt="Movie 3">
                 </div>
             </div>
 
             <div class="flex items-center flex-shrink-0 group cursor-pointer">
                 <span class="top-10-number">4</span>
-                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
                     <img src="https://image.tmdb.org/t/p/w500/r7D47pajX90A7Y6v9l5P9o6vL0e.jpg" class="w-full h-full object-cover" alt="Movie 4">
                 </div>
             </div>
