@@ -30,11 +30,12 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .sidebar-icon { color: #808080; transition: all 0.3s; cursor: pointer; }
-        .sidebar-icon:hover { color: #ffffff; }
+        /* Icon Colors set to Blue */
+        .sidebar-icon { color: #00a8e1; transition: all 0.3s; cursor: pointer; }
+        .sidebar-icon:hover { color: #ffffff; transform: translateY(-2px); }
+        
+        /* Navigation Styles */
         .active-nav { color: #ffffff; border-left: 3px solid #00a8e1; }
-
-        /* Navigation Tooltips */
         .nav-item .nav-tooltip {
             position: absolute;
             left: 70px;
@@ -50,10 +51,6 @@
             white-space: nowrap;
         }
         .nav-item:hover .nav-tooltip { opacity: 1; }
-
-        .fa-instagram:hover { color: #E1306C; }
-        .fa-facebook:hover { color: #1877F2; }
-        .fa-youtube:hover { color: #FF0000; }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -75,27 +72,27 @@
         
         <div class="flex flex-col items-center space-y-10 w-full">
             <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-house sidebar-icon active-nav pl-2 text-xl"></i>
+                <i class="fa-solid fa-house text-[#808080] hover:text-white transition-all active-nav pl-2 text-xl"></i>
                 <span class="nav-tooltip">Home</span>
             </div>
 
             <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-film sidebar-icon text-xl"></i>
+                <i class="fa-solid fa-film text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
                 <span class="nav-tooltip">Movies</span>
             </div>
 
             <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-image sidebar-icon text-xl"></i>
+                <i class="fa-solid fa-image text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
                 <span class="nav-tooltip">Wallpapers</span>
             </div>
 
             <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-circle-question sidebar-icon text-xl"></i>
+                <i class="fa-solid fa-circle-question text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
                 <span class="nav-tooltip">Inquiries</span>
             </div>
 
             <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-magnifying-glass sidebar-icon text-xl"></i>
+                <i class="fa-solid fa-magnifying-glass text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
                 <span class="nav-tooltip">Search</span>
             </div>
         </div>
@@ -133,7 +130,7 @@
             
             <div class="pt-4 flex space-x-4">
                 <button class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition flex items-center">
-                    <i class="fa-solid fa-play mr-2"></i> Play
+                    <i class="fa-solid fa-play mr-2"></i> Play Now
                 </button>
                 <button class="bg-gray-500/30 backdrop-blur-md text-white px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">
                     Details
@@ -144,7 +141,7 @@
 
     <main class="relative z-30 ml-20 -mt-20 px-16 pb-20">
         <h3 class="text-2xl font-bold mb-6 flex items-center">
-            Trending Now <i class="fa-solid fa-chevron-right text-sm ml-3 text-gray-600"></i>
+            Top 10 in Movies <i class="fa-solid fa-chevron-right text-sm ml-3 text-gray-600"></i>
         </h3>
         
         <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
