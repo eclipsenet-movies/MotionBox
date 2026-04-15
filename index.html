@@ -1,135 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eclipse Cinema | Batman</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@400;900&display=swap" rel="stylesheet">
-    
-    <style>
-        body { background-color: #080808; color: white; font-family: 'Inter', sans-serif; }
-        
-        .batman-title { font-family: 'Anton', sans-serif; letter-spacing: 2px; }
-        .batman-subtitle { font-family: 'Permanent Marker', cursive; color: #e11d48; transform: rotate(-3deg); display: inline-block; }
-        
-        /* Hero Overlays */
-        .hero-vignette {
-            background: radial-gradient(circle at 20% 50%, transparent 10%, rgba(8, 8, 8, 0.9) 80%);
-        }
-        .bottom-fade {
-            background: linear-gradient(to top, #080808 10%, transparent 100%);
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipse Cinema | Batman</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #080808; color: white; font-family: 'Inter', sans-serif; }
+        
+        .batman-title { font-family: 'Anton', sans-serif; letter-spacing: 2px; }
+        .batman-subtitle { font-family: 'Permanent Marker', cursive; color: #e11d48; transform: rotate(-3deg); display: inline-block; }
+        
+        /* Hero Overlays */
+        .hero-vignette {
+            background: radial-gradient(circle at 20% 50%, transparent 10%, rgba(8, 8, 8, 0.9) 80%);
+        }
+        .bottom-fade {
+            background: linear-gradient(to top, #080808 10%, transparent 100%);
+        }
 
-        /* Top 10 Styling */
-        .top-10-number {
-            font-size: 10rem; line-height: 1; font-weight: 900; -webkit-text-stroke: 1.5px #333; color: transparent;
-            margin-right: -40px; z-index: 10; font-family: 'Inter', sans-serif;
-        }
+        /* Top 10 Styling */
+        .top-10-number {
+            font-size: 10rem; line-height: 1; font-weight: 900; -webkit-text-stroke: 1.5px #333; color: transparent;
+            margin-right: -40px; z-index: 10; font-family: 'Inter', sans-serif;
+        }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .sidebar-icon { color: #666; transition: 0.3s; cursor: pointer; }
-        .sidebar-icon:hover { color: #e11d48; }
-        .active-nav { color: #fff; border-left: 3px solid #e11d48; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .sidebar-icon { color: #666; transition: 0.3s; cursor: pointer; }
+        .sidebar-icon:hover { color: #e11d48; }
+        .active-nav { color: #fff; border-left: 3px solid #e11d48; }
 
-        /* Glowing Button Effect */
-        .btn-glow:hover {
-            box-shadow: 0 0 20px rgba(225, 29, 72, 0.6);
-            transform: translateY(-2px);
-        }
-    </style>
+        /* Glowing Button Effect */
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.6);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-10 space-y-10 bg-black z-50 border-r border-white/5">
-        <div class="text-white text-3xl font-black italic">E</div>
-        <i class="fa-solid fa-house sidebar-icon active-nav pl-2"></i>
-        <i class="fa-solid fa-fire sidebar-icon"></i>
-        <i class="fa-solid fa-tv sidebar-icon"></i>
-        <i class="fa-solid fa-clapperboard sidebar-icon"></i>
-        <i class="fa-solid fa-user-circle sidebar-icon mt-auto text-2xl"></i>
-    </nav>
+    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-10 space-y-10 bg-black z-50 border-r border-white/5">
+        <div class="text-white text-3xl font-black italic">E</div>
+        <i class="fa-solid fa-house sidebar-icon active-nav pl-2"></i>
+        <i class="fa-solid fa-fire sidebar-icon"></i>
+        <i class="fa-solid fa-tv sidebar-icon"></i>
+        <i class="fa-solid fa-clapperboard sidebar-icon"></i>
+        <i class="fa-solid fa-user-circle sidebar-icon mt-auto text-2xl"></i>
+    </nav>
 
-    <section class="relative h-[90vh] ml-20 overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://cdn.district.in/movies-assets/images/cinema/Spider-Man--Brand-New-Day-optimized-ff439380-22c0-11f1-8a01-2f0d4e0eb1bd.jpg" alt="Batman" class="w-full h-full object-cover object-center scale-110">
-            <div class="hero-vignette absolute inset-0"></div>
-            <div class="bottom-fade absolute inset-0"></div>
-        </div>
+    <section class="relative h-[90vh] ml-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://image.tmdb.org/t/p/original/b0PlSF4vK6RjvYp5YtA9Hsh3O2U.jpg" alt="Batman" class="w-full h-full object-cover object-center scale-110">
+            <div class="hero-vignette absolute inset-0"></div>
+            <div class="bottom-fade absolute inset-0"></div>
+        </div>
 
-        <div class="absolute top-8 right-12 z-30 flex items-center space-x-8 text-sm font-bold uppercase tracking-widest opacity-80">
-            <a href="#" class="hover:text-red-500">Home</a>
-            <a href="#" class="hover:text-red-500">Story</a>
-            <a href="#" class="hover:text-red-500">Wallpapers</a>
-            <span class="text-red-600">#BeVengeance</span>
-            <div class="flex space-x-4 text-lg ml-6">
-                <i class="fa-brands fa-facebook-f cursor-pointer hover:text-red-500"></i>
-                <i class="fa-brands fa-instagram cursor-pointer hover:text-red-500"></i>
-                <i class="fa-brands fa-youtube cursor-pointer hover:text-red-500"></i>
-            </div>
-        </div>
+        <div class="absolute top-8 right-12 z-30 flex items-center space-x-8 text-sm font-bold uppercase tracking-widest opacity-80">
+            <a href="#" class="hover:text-red-500">Home</a>
+            <a href="#" class="hover:text-red-500">Story</a>
+            <a href="#" class="hover:text-red-500">Wallpapers</a>
+            <span class="text-red-600">#BeVengeance</span>
+            <div class="flex space-x-4 text-lg ml-6">
+                <i class="fa-brands fa-facebook-f cursor-pointer hover:text-red-500"></i>
+                <i class="fa-brands fa-instagram cursor-pointer hover:text-red-500"></i>
+                <i class="fa-brands fa-youtube cursor-pointer hover:text-red-500"></i>
+            </div>
+        </div>
 
-        <div class="relative z-20 flex flex-col justify-center h-full px-20 max-w-4xl">
-            <div class="batman-logo mb-4">
-                <i class="fa-solid fa-mask text-4xl text-white opacity-90"></i>
-            </div>
-            
-            <h1 class="batman-title text-[120px] leading-[0.85] font-black uppercase mb-2 drop-shadow-2xl">
-                BATMAN
-            </h1>
-            <h2 class="batman-subtitle text-5xl ml-2 mb-8 drop-shadow-lg">
-                The Dark Knight
-            </h2>
+        <div class="relative z-20 flex flex-col justify-center h-full px-20 max-w-4xl">
+            <div class="batman-logo mb-4">
+                <i class="fa-solid fa-mask text-4xl text-white opacity-90"></i>
+            </div>
+            
+            <h1 class="batman-title text-[120px] leading-[0.85] font-black uppercase mb-2 drop-shadow-2xl">
+                BATMAN
+            </h1>
+            <h2 class="batman-subtitle text-5xl ml-2 mb-8 drop-shadow-lg">
+                The Dark Knight
+            </h2>
 
-            <p class="text-lg text-gray-300 font-medium leading-relaxed max-w-xl mb-10 opacity-90">
-                In the dark heart of Gotham, Bruce Wayne confronts a new threat emerging from the city's underworld. To save his city, Batman must become the symbol of justice Gotham needs.
-            </p>
+            <p class="text-lg text-gray-300 font-medium leading-relaxed max-w-xl mb-10 opacity-90">
+                In the dark heart of Gotham, Bruce Wayne confronts a new threat emerging from the city's underworld. To save his city, Batman must become the symbol of justice Gotham needs.
+            </p>
 
-            <div class="flex space-x-6">
-                <button class="btn-glow bg-red-600 text-white px-10 py-4 font-black uppercase tracking-tighter transition-all italic">
-                    Pre-Order Now
-                </button>
-                <button class="border-2 border-white/20 hover:border-white px-10 py-4 font-black uppercase tracking-tighter transition-all italic">
-                    Watch The Teaser
-                </button>
-            </div>
-            
-            <div class="mt-12 flex items-center space-x-6 opacity-60">
-                <i class="fa-brands fa-xbox text-3xl"></i>
-                <span class="font-bold tracking-widest text-xl">DC COMICS</span>
-            </div>
-        </div>
-    </section>
+            <div class="flex space-x-6">
+                <button class="btn-glow bg-red-600 text-white px-10 py-4 font-black uppercase tracking-tighter transition-all italic">
+                    Pre-Order Now
+                </button>
+                <button class="border-2 border-white/20 hover:border-white px-10 py-4 font-black uppercase tracking-tighter transition-all italic">
+                    Watch The Teaser
+                </button>
+            </div>
+            
+            <div class="mt-12 flex items-center space-x-6 opacity-60">
+                <i class="fa-brands fa-xbox text-3xl"></i>
+                <span class="font-bold tracking-widest text-xl">DC COMICS</span>
+            </div>
+        </div>
+    </section>
 
-    <main class="relative z-30 ml-20 -mt-10 px-20 pb-20">
-        <h3 class="text-xl font-bold uppercase tracking-widest mb-8 border-l-4 border-red-600 pl-4">
-            Top 10 in Gotham
-        </h3>
-        
-        <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10">
-            <div class="flex items-center flex-shrink-0 group cursor-pointer">
-                <span class="top-10-number">1</span>
-                <div class="w-72 h-40 bg-gray-900 overflow-hidden transform group-hover:scale-110 transition duration-500 border-2 border-transparent group-hover:border-red-600">
-                    <img src="https://cdn.district.in/movies-assets/images/cinema/Spider-Man--Brand-New-Day-optimized-ff439380-22c0-11f1-8a01-2f0d4e0eb1bd.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
-                </div>
-            </div>
+    <main class="relative z-30 ml-20 -mt-10 px-20 pb-20">
+        <h3 class="text-xl font-bold uppercase tracking-widest mb-8 border-l-4 border-red-600 pl-4">
+            Top 10 in Gotham
+        </h3>
+        
+        <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10">
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">1</span>
+                <div class="w-72 h-40 bg-gray-900 overflow-hidden transform group-hover:scale-110 transition duration-500 border-2 border-transparent group-hover:border-red-600">
+                    <img src="https://image.tmdb.org/t/p/w500/8G4X60bI53Hsh9XmC9E07uCjV55.jpg" class="w-full h-full object-cover transition duration-500">
+                </div>
+            </div>
 
-            <div class="flex items-center flex-shrink-0 group cursor-pointer">
-                <span class="top-10-number">2</span>
-                <div class="w-72 h-40 bg-gray-900 overflow-hidden transform group-hover:scale-110 transition duration-500 border-2 border-transparent group-hover:border-red-600">
-                    <img src="https://image.tmdb.org/t/p/w500/7WsyChvgyno9Yv1U01vt0v9R1sR.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
-                </div>
-            </div>
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">2</span>
+                <div class="w-72 h-40 bg-gray-900 overflow-hidden transform group-hover:scale-110 transition duration-500 border-2 border-transparent group-hover:border-red-600">
+                    <img src="https://image.tmdb.org/t/p/w500/7WsyChvgyno9Yv1U01vt0v9R1sR.jpg" class="w-full h-full object-cover transition duration-500">
+                </div>
+            </div>
 
-            <div class="flex items-center flex-shrink-0 group cursor-pointer">
-                <span class="top-10-number">3</span>
-                <div class="w-72 h-40 bg-gray-900 overflow-hidden transform group-hover:scale-110 transition duration-500 border-2 border-transparent group-hover:border-red-600">
-                    <img src="https://image.tmdb.org/t/p/w500/reX4YARuYhd6pY96nyqzG2fP6I9.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
-                </div>
-            </div>
-        </div>
-    </main>
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">3</span>
+                <div class="w-72 h-40 bg-gray-900 overflow-hidden transform group-hover:scale-110 transition duration-500 border-2 border-transparent group-hover:border-red-600">
+                    <img src="https://image.tmdb.org/t/p/w500/reX4YARuYhd6pY96nyqzG2fP6I9.jpg" class="w-full h-full object-cover transition duration-500">
+                </div>
+            </div>
+        </div>
+    main>
 
 </body>
 </html>
