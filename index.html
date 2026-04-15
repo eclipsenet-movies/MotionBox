@@ -8,120 +8,141 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background-color: #0f171e; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
         .hero-gradient { background: linear-gradient(to right, #0f171e 25%, rgba(15, 23, 30, 0.4) 60%, transparent 100%); }
         .bottom-vignette { background: linear-gradient(to top, #0f171e 15%, transparent 100%); }
+
         .top-10-number {
             font-size: 10rem; line-height: 1; font-weight: 900; 
             -webkit-text-stroke: 2px #556677; color: transparent;
             margin-right: -45px; z-index: 10; font-family: Arial, sans-serif;
         }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
         .sidebar-icon { color: #00a8e1; transition: all 0.3s; cursor: pointer; }
         .sidebar-icon:hover { color: #ffffff; transform: translateY(-2px); }
+        
+        .active-nav { color: #ffffff; border-left: 3px solid #00a8e1; }
         .nav-item .nav-tooltip {
             position: absolute; left: 70px; background: #00a8e1; color: white;
             padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;
             opacity: 0; pointer-events: none; transition: opacity 0.2s; white-space: nowrap;
         }
         .nav-item:hover .nav-tooltip { opacity: 1; }
-        
-        /* Modal Animation */
-        #details-modal { transition: opacity 0.3s ease-in-out; }
-        .hidden { display: none; }
+
+        /* Modal "Page" Transition */
+        #movie-details-page {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+            transform: translateY(100%);
+        }
+        #movie-details-page.active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <div class="fixed top-0 right-0 z-40 flex items-center space-x-6 px-8 py-6 bg-gradient-to-l from-[#0f171e] to-transparent">
-        <div class="flex items-center space-x-5 border-r border-gray-700 pr-6">
-            <a href="#" class="sidebar-icon"><i class="fa-brands fa-instagram text-xl"></i></a>
-            <a href="#" class="sidebar-icon"><i class="fa-brands fa-facebook text-xl"></i></a>
-            <a href="#" class="sidebar-icon"><i class="fa-brands fa-youtube text-xl"></i></a>
-        </div>
-        <div class="flex items-center space-x-3 cursor-pointer group">
-            <span class="text-sm font-bold text-gray-400 group-hover:text-white transition">My Account</span>
-            <i class="fa-solid fa-user-circle text-2xl text-blue-400"></i>
-        </div>
-    </div>
-
     <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0f171e] z-50 border-r border-gray-800">
         <div class="text-blue-400 text-2xl font-bold italic tracking-tighter mb-12">EC</div>
         <div class="flex flex-col items-center space-y-10 w-full">
-            <div class="nav-item flex flex-col items-center w-full relative"><i class="fa-solid fa-house text-[#808080] hover:text-white transition-all pl-2 text-xl"></i><span class="nav-tooltip">Home</span></div>
-            <div class="nav-item flex flex-col items-center w-full relative"><i class="fa-solid fa-film text-white transition-all pl-2 text-xl border-l-4 border-blue-400"></i><span class="nav-tooltip">Movies</span></div>
+            <div class="nav-item flex flex-col items-center w-full relative"><i class="fa-solid fa-house text-white transition-all active-nav pl-2 text-xl"></i></div>
+            <div class="nav-item flex flex-col items-center w-full relative"><i class="fa-solid fa-film text-[#808080] hover:text-white transition-all pl-2 text-xl"></i></div>
         </div>
     </nav>
 
-    <section class="relative h-[85vh] ml-20 overflow-hidden">
+    <section class="relative h-[90vh] ml-20 overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg" alt="Hero Background" class="w-full h-full object-cover">
             <div class="hero-gradient absolute inset-0"></div>
             <div class="bottom-vignette absolute inset-0"></div>
         </div>
         <div class="relative z-20 flex flex-col justify-center h-full px-16 max-w-3xl space-y-4">
-            <h1 class="text-7xl font-black tracking-tighter leading-none uppercase">Bloodhounds<br>Season 2</h1>
-            <div class="flex space-x-4">
-                <a href="https://youtu.be/hswVKUkbnNI" target="_blank" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition flex items-center">
-                    <i class="fa-solid fa-play mr-2"></i> Watch Trailer
-                </a>
+            <h1 class="text-7xl font-black tracking-tighter leading-none uppercase">Bloodhound<br>Season 2</h1>
+            <div class="pt-4 flex space-x-4">
+                <button onclick="showDetails()" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition flex items-center">
+                    <i class="fa-solid fa-play mr-2"></i> Watch S1 Now
+                </button>
             </div>
         </div>
     </section>
 
-    <main class="relative z-30 ml-20 -mt-20 px-16 pb-20">
-        <h3 class="text-2xl font-bold mb-6">Top 10 in Movies</h3>
+    <main class="relative z-30 ml-20 mt-4 px-16 pb-20">
+        <h3 class="text-2xl font-bold mb-6 flex items-center">Top 10 in Movies</h3>
         <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
-            <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails()">
+            
+            <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="showDetails()">
                 <span class="top-10-number">1</span>
                 <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
                     <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full h-full object-cover" alt="Bloodhounds">
                 </div>
             </div>
+
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">2</span>
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Film 2">
+                </div>
+            </div>
         </div>
     </main>
 
-    <div id="details-modal" class="fixed inset-0 z-[100] bg-[#0f171e] hidden overflow-y-auto">
-        <div class="max-w-6xl mx-auto px-8 py-12">
-            <button onclick="closeDetails()" class="text-white text-4xl mb-8 hover:text-blue-400 transition">
-                <i class="fa-solid fa-arrow-left"></i> <span class="text-lg ml-4">Back to Browse</span>
-            </button>
+    <div id="movie-details-page" class="fixed inset-0 z-[100] bg-[#0f171e] hidden overflow-y-auto">
+        <button onclick="hideDetails()" class="fixed top-8 left-28 z-[110] bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full font-bold transition flex items-center shadow-xl">
+            <i class="fa-solid fa-arrow-left mr-2"></i> Back to Browse
+        </button>
 
+        <div class="h-[60vh] relative">
+            <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full h-full object-cover opacity-20 blur-sm" alt="Backdrop">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0f171e] via-transparent to-transparent"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-8 -mt-64 relative z-10 pb-20">
             <div class="flex flex-col md:flex-row gap-12">
-                <div class="w-full md:w-1/3">
-                    <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full rounded-xl shadow-2xl border border-gray-700">
+                <div class="w-full md:w-1/3 flex-shrink-0">
+                    <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full rounded-2xl shadow-2xl border border-gray-700" alt="Poster">
                 </div>
 
                 <div class="w-full md:w-2/3 space-y-6">
-                    <h1 class="text-5xl font-bold">Bloodhounds (2023)</h1>
-                    <div class="flex items-center space-x-6 text-blue-400 font-bold">
-                        <span>⭐ 8.3 IMDb</span>
-                        <span>2023</span>
-                        <span>Season 01 (Complete)</span>
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">TV SERIES</span>
+                        <span class="text-gray-400 font-bold">Season 01 (Complete)</span>
                     </div>
+                    <h1 class="text-6xl font-black tracking-tight">Bloodhounds (2023)</h1>
                     
-                    <p class="text-gray-400 text-lg leading-relaxed">
-                        Two young boxers band together with a benevolent moneylender to take down a ruthless loan shark who preys on the financially desperate.
-                    </p>
-
-                    <div class="grid grid-cols-2 gap-4 text-sm bg-gray-900/50 p-6 rounded-lg border border-gray-800">
-                        <div><span class="text-gray-500 uppercase block">Genre</span> Action & Adventure, Crime, Drama, Korea</div>
-                        <div><span class="text-gray-500 uppercase block">Episodes</span> 01-08</div>
-                        <div><span class="text-gray-500 uppercase block">Votes</span> 60 Votes</div>
-                        <div><span class="text-gray-500 uppercase block">Views</span> 36,920 Views</div>
+                    <div class="flex items-center space-x-6">
+                        <div class="flex items-center text-blue-400 font-bold text-xl">
+                            <i class="fa-solid fa-star mr-2 text-yellow-500"></i> 8.3 <span class="text-gray-500 text-sm ml-2">IMDb</span>
+                        </div>
+                        <div class="text-gray-400 font-medium">60 votes • 36,920 views</div>
+                        <div class="text-gray-400 font-medium">Year: 2023</div>
                     </div>
 
-                    <div class="space-y-4 pt-6">
-                        <h4 class="text-xl font-bold border-l-4 border-blue-400 pl-4">Download Links</h4>
-                        <div class="flex flex-col gap-3">
-                            <a href="https://cinesubz.lk/api-rwjdzuehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdruehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdrwjdzuehbwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0a/ofadyn5zuh/" class="bg-blue-600 hover:bg-blue-700 p-4 rounded-lg flex justify-between items-center transition">
-                                <span>Download 480p (350MB)</span> <i class="fa-solid fa-download"></i>
+                    <p class="text-gray-300 text-lg">Action & Adventure, Crime, Drama, Korea</p>
+                    
+                    <div class="bg-gray-800/50 border border-gray-700 p-6 rounded-xl space-y-2">
+                        <h4 class="font-bold text-blue-400 uppercase tracking-widest text-sm">Series Info</h4>
+                        <p class="text-gray-200">Episode 01-08 (Full Season)</p>
+                    </div>
+
+                    <div class="pt-6 space-y-4">
+                        <h3 class="text-2xl font-bold flex items-center">
+                            <i class="fa-solid fa-download mr-3 text-blue-500"></i> Download Episodes
+                        </h3>
+                        <div class="grid gap-3">
+                            <a href="https://cinesubz.lk/api-rwjdzuehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdruehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdrwjdzuehbwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0a/ofadyn5zuh/" class="bg-gray-800 hover:bg-blue-600 p-4 rounded-lg flex justify-between items-center transition">
+                                <span class="font-bold">Download Link 01 (480p)</span>
+                                <span class="bg-gray-900 px-3 py-1 rounded text-xs">350MB</span>
                             </a>
-                            <a href="https://cinesubz.lk/api-rwjdzuehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdruehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdrwjdzuehbwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0a/m3fg7po3an/" class="bg-gray-800 hover:bg-gray-700 p-4 rounded-lg flex justify-between items-center transition">
-                                <span>Download 720p (650MB)</span> <i class="fa-solid fa-download"></i>
+                            <a href="https://cinesubz.lk/api-rwjdzuehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdruehbdrwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0auehbdrwjdzuehbwjdzuehbdzjyvxo2bhh0azjyvxo2bhh0a/m3fg7po3an/" class="bg-gray-800 hover:bg-blue-600 p-4 rounded-lg flex justify-between items-center transition">
+                                <span class="font-bold">Download Link 02 (720p)</span>
+                                <span class="bg-gray-900 px-3 py-1 rounded text-xs">650MB</span>
                             </a>
-                            <button class="bg-gray-800 opacity-50 cursor-not-allowed p-4 rounded-lg flex justify-between items-center">
-                                <span>Download 1080p (1.3GB)</span> <i class="fa-solid fa-lock"></i>
-                            </button>
+                            <a href="#" class="bg-gray-800 hover:bg-blue-600 p-4 rounded-lg flex justify-between items-center transition">
+                                <span class="font-bold">Download Link 03 (1080p)</span>
+                                <span class="bg-gray-900 px-3 py-1 rounded text-xs">1.3GB</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -130,14 +151,22 @@
     </div>
 
     <script>
-        function openDetails() {
-            document.getElementById('details-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Stop scrolling background
+        function showDetails() {
+            const page = document.getElementById('movie-details-page');
+            page.classList.remove('hidden');
+            setTimeout(() => {
+                page.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
         }
 
-        function closeDetails() {
-            document.getElementById('details-modal').classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Enable scrolling
+        function hideDetails() {
+            const page = document.getElementById('movie-details-page');
+            page.classList.remove('active');
+            setTimeout(() => {
+                page.classList.add('hidden');
+            }, 400);
+            document.body.style.overflow = 'auto'; // Re-enable background scrolling
         }
     </script>
 </body>
