@@ -9,7 +9,7 @@
     <style>
         body { background-color: #0f171e; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        /* Hero Section Gradients - Makes the image blend into the UI */
+        /* Hero Section Gradients */
         .hero-gradient {
             background: linear-gradient(to right, #0f171e 25%, rgba(15, 23, 30, 0.4) 60%, transparent 100%);
         }
@@ -32,25 +32,74 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .sidebar-icon { color: #808080; transition: color 0.3s; cursor: pointer; }
+        .sidebar-icon { color: #808080; transition: all 0.3s; cursor: pointer; }
         .sidebar-icon:hover { color: #ffffff; }
         .active-nav { color: #ffffff; border-left: 3px solid #00a8e1; }
+
+        /* Tooltip style for sidebar */
+        .nav-tooltip {
+            position: absolute;
+            left: 70px;
+            background: #00a8e1;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .nav-item:hover .nav-tooltip { opacity: 1; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-10 space-y-10 bg-[#0f171e] z-50 border-r border-gray-800">
-        <div class="text-blue-400 text-2xl font-bold italic tracking-tighter">EC</div>
-        <i class="fa-solid fa-magnifying-glass sidebar-icon"></i>
-        <i class="fa-solid fa-house sidebar-icon active-nav pl-2"></i>
-        <i class="fa-solid fa-box-archive sidebar-icon"></i>
-        <i class="fa-solid fa-user-circle sidebar-icon mt-auto text-2xl"></i>
+    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0f171e] z-50 border-r border-gray-800">
+        <div class="text-blue-400 text-2xl font-bold italic tracking-tighter mb-10">EC</div>
+        
+        <div class="flex flex-col items-center space-y-8 w-full flex-grow">
+            <div class="nav-item flex flex-col items-center w-full relative">
+                <i class="fa-solid fa-house sidebar-icon active-nav pl-2 text-xl"></i>
+                <span class="nav-tooltip">Home</span>
+            </div>
+
+            <div class="nav-item flex flex-col items-center w-full relative">
+                <i class="fa-solid fa-film sidebar-icon text-xl"></i>
+                <span class="nav-tooltip">Movies</span>
+            </div>
+
+            <div class="nav-item flex flex-col items-center w-full relative">
+                <i class="fa-solid fa-image sidebar-icon text-xl"></i>
+                <span class="nav-tooltip">Wallpapers</span>
+            </div>
+
+            <div class="nav-item flex flex-col items-center w-full relative">
+                <i class="fa-solid fa-circle-question sidebar-icon text-xl"></i>
+                <span class="nav-tooltip">Inquiries</span>
+            </div>
+
+            <div class="nav-item flex flex-col items-center w-full relative">
+                <i class="fa-solid fa-magnifying-glass sidebar-icon text-xl"></i>
+                <span class="nav-tooltip">Search</span>
+            </div>
+        </div>
+
+        <div class="mt-auto flex flex-col items-center space-y-5 pb-6 border-t border-gray-800 pt-6 w-full">
+            <a href="#" title="Instagram" class="sidebar-icon hover:text-pink-500"><i class="fa-brands fa-instagram text-xl"></i></a>
+            <a href="#" title="Facebook" class="sidebar-icon hover:text-blue-600"><i class="fa-brands fa-facebook text-xl"></i></a>
+            <a href="#" title="X (Twitter)" class="sidebar-icon hover:text-white"><i class="fa-brands fa-x-twitter text-xl"></i></a>
+            
+            <div class="pt-4">
+                <i class="fa-solid fa-user-circle sidebar-icon text-2xl text-blue-400"></i>
+            </div>
+        </div>
     </nav>
 
     <section class="relative h-[85vh] ml-20 overflow-hidden">
-        
         <div class="absolute inset-0 z-0">
-            <img src="images (2).jpeg" alt="The Batman Background" class="w-full h-full object-cover object-right">
+            <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&q=80&w=1920" alt="Hero Background" class="w-full h-full object-cover object-right">
             <div class="hero-gradient absolute inset-0"></div>
             <div class="bottom-vignette absolute inset-0"></div>
         </div>
@@ -89,14 +138,14 @@
             <div class="flex items-center flex-shrink-0 group cursor-pointer">
                 <span class="top-10-number">1</span>
                 <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsT-2OtzTR9ip3GE2kLxu842aehCgFLWX0HA&s" class="w-full h-full object-cover" alt="Batman Poster">
+                    <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Batman">
                 </div>
             </div>
 
             <div class="flex items-center flex-shrink-0 group cursor-pointer">
                 <span class="top-10-number">2</span>
                 <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-110 transition duration-300 border-2 border-transparent group-hover:border-white">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsT-2OtzTR9ip3GE2kLxu842aehCgFLWX0HA&s" class="w-full h-full object-cover" alt="Movie 2">
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Movie 2">
                 </div>
             </div>
 
