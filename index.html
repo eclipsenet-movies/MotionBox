@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #0b0214; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0b0214; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
         
         /* --- WELCOME OVERLAY STYLES --- */
         #welcome-overlay {
@@ -68,22 +68,14 @@
         @keyframes loading { 100% { left: 100%; } }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        .hero-gradient {
-            background: linear-gradient(to right, #0b0214 25%, rgba(11, 2, 20, 0.4) 60%, transparent 100%);
-        }
-        .bottom-vignette {
-            background: linear-gradient(to top, #0b0214 15%, transparent 100%);
-        }
+        /* --- UI UTILITIES --- */
+        .hero-gradient { background: linear-gradient(to right, #0b0214 25%, rgba(11, 2, 20, 0.4) 60%, transparent 100%); }
+        .bottom-vignette { background: linear-gradient(to top, #0b0214 15%, transparent 100%); }
 
         .top-10-number {
-            font-size: 10rem; 
-            line-height: 1; 
-            font-weight: 900; 
-            -webkit-text-stroke: 2px #4c1d95; 
-            color: transparent;
-            margin-right: -45px; 
-            z-index: 10;
-            font-family: Arial, sans-serif;
+            font-size: 10rem; line-height: 1; font-weight: 900; 
+            -webkit-text-stroke: 2px #4c1d95; color: transparent;
+            margin-right: -45px; z-index: 10; font-family: Arial, sans-serif;
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -92,29 +84,30 @@
         .sidebar-icon { color: #a855f7; transition: all 0.3s; cursor: pointer; }
         .sidebar-icon:hover { color: #ffffff; transform: translateY(-2px); }
         
-        .active-nav { color: #ffffff; border-left: 3px solid #a855f7; }
         .nav-item .nav-tooltip {
-            position: absolute;
-            left: 70px;
-            background: #a855f7;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-            white-space: nowrap;
+            position: absolute; left: 70px; background: #a855f7; color: white;
+            padding: 4px 10px; border-radius: 4px; font-size: 12px;
+            font-weight: bold; opacity: 0; pointer-events: none;
+            transition: opacity 0.2s; white-space: nowrap;
         }
         .nav-item:hover .nav-tooltip { opacity: 1; }
+        .active-nav { color: #ffffff !important; border-left: 3px solid #a855f7; }
+
+        /* --- PAGE SECTIONS --- */
+        .page-section { display: none; margin-left: 80px; padding: 40px; min-height: 100vh; }
+        .page-section.active { display: block; }
 
         #details-page {
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             transform: translateX(100%);
         }
-        #details-page.active {
-            transform: translateX(0);
+        #details-page.active { transform: translateX(0); }
+
+        .bloodhound-font {
+            font-family: 'Archivo Black', sans-serif; font-style: italic; 
+            background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), #ffffff;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
         }
     </style>
 </head>
@@ -140,19 +133,19 @@
     <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0b0214] z-50 border-r border-purple-950">
         <div class="text-purple-500 text-2xl font-bold italic tracking-tighter mb-12">EC</div>
         <div class="flex flex-col items-center space-y-10 w-full">
-            <div class="nav-item flex flex-col items-center w-full relative">
+            <div class="nav-item flex flex-col items-center w-full relative" onclick="switchPage('home-content', this)">
                 <i class="fa-solid fa-house text-[#808080] hover:text-white transition-all active-nav pl-2 text-xl"></i>
                 <span class="nav-tooltip">Home</span>
             </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
+            <div class="nav-item flex flex-col items-center w-full relative" onclick="switchPage('movies-page', this)">
                 <i class="fa-solid fa-film text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
                 <span class="nav-tooltip">Movies</span>
             </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
+            <div class="nav-item flex flex-col items-center w-full relative" onclick="switchPage('wallpapers-page', this)">
                 <i class="fa-solid fa-image text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
                 <span class="nav-tooltip">Wallpapers</span>
             </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
+            <div class="nav-item flex flex-col items-center w-full relative" onclick="switchPage('inquiries-page', this)">
                 <i class="fa-solid fa-circle-question text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
                 <span class="nav-tooltip">Inquiries</span>
             </div>
@@ -163,281 +156,189 @@
         </div>
     </nav>
 
-    <div id="home-content">
+    <div id="home-content" class="page-section active !ml-0 !p-0">
         <section class="relative h-[90vh] ml-20 overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg" alt="Hero Background" class="w-full h-full object-cover">
+                <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg" alt="Hero" class="w-full h-full object-cover">
                 <div class="hero-gradient absolute inset-0"></div>
                 <div class="bottom-vignette absolute inset-0"></div>
             </div>
-
             <div class="relative z-20 flex flex-col justify-center h-full px-16 max-w-3xl space-y-4">
-                <div class="flex items-center space-x-2 text-purple-400 font-bold uppercase text-xs tracking-widest">
-                    <i class="fa-solid fa-star"></i> <span>Premium Feature</span>
-                </div>
-                <style>
-                    .bloodhound-font {
-                        font-family: 'Archivo Black', sans-serif;
-                        font-style: italic; 
-                        background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), #ffffff;
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
-                        letter-spacing: -0.05em;
-                    }
-                </style>
-                <div class="py-2">
-                    <h1 class="bloodhound-font text-7xl font-black tracking-tighter leading-[0.75] uppercase">
-                        Bloodhounds<br><span class="text-5xl tracking-normal text-purple-100">Season 2</span>
-                    </h1>
-                </div>
-                <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
-                    <span class="text-white">⭐ 8.3</span>
-                    <span>2026</span>
-                    <span>Season 2</span>
-                    <span class="border border-purple-800 px-1 rounded text-[10px]">HD</span>
-                    <span class="text-purple-400 font-medium">Action • Crime • Drama</span>
-                </div>
-                <p class="text-lg text-gray-300 leading-relaxed font-medium">Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by a feared underground kingpin.</p>
+                <h1 class="bloodhound-font text-7xl font-black uppercase">Bloodhounds<br><span class="text-5xl text-purple-100 italic">Season 2</span></h1>
+                <p class="text-lg text-gray-300">New dangers, new fights. The duo is back to dismantle the criminal empire once and for all.</p>
                 <div class="pt-4 flex space-x-4">
-                    <button onclick="openDetails(0)" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-purple-100 transition flex items-center">
-                        <i class="fa-solid fa-play mr-2 text-purple-600"></i> Play Now
-                    </button>
-                    <button onclick="openDetails(0)" class="bg-gray-500/30 backdrop-blur-md text-white px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">
-                        Details
-                    </button>
+                    <button onclick="openDetails(0)" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-purple-100 transition">Play Now</button>
+                    <button onclick="openDetails(0)" class="bg-gray-500/30 backdrop-blur-md px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">Details</button>
                 </div>
             </div>
         </section>
-
-        <main class="relative z-30 ml-20 mt-4 px-16 pb-20">
+        <main class="ml-20 px-16 pb-20 mt-4">
             <h3 class="text-2xl font-bold mb-6">Top 10 in Movies</h3>
-            <div id="movie-grid" class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
-                </div>
+            <div id="top-10-grid" class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center"></div>
         </main>
+    </div>
+
+    <div id="movies-page" class="page-section">
+        <h1 class="text-4xl font-black mb-8 border-l-4 border-purple-600 pl-4 uppercase">Select Your Film</h1>
+        <div id="full-movie-list" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            </div>
+    </div>
+
+    <div id="wallpapers-page" class="page-section">
+        <h1 class="text-4xl font-black mb-8 border-l-4 border-purple-600 pl-4 uppercase">Download Wallpapers</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="relative group rounded-xl overflow-hidden border border-purple-900">
+                <img src="https://images.alphacoders.com/134/1342345.jpeg" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <button class="bg-purple-600 px-6 py-2 rounded-full font-bold">Download 4K</button>
+                </div>
+            </div>
+            <div class="relative group rounded-xl overflow-hidden border border-purple-900">
+                <img src="https://images7.alphacoders.com/131/1317424.jpeg" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <button class="bg-purple-600 px-6 py-2 rounded-full font-bold">Download 4K</button>
+                </div>
+            </div>
+            <div class="relative group rounded-xl overflow-hidden border border-purple-900">
+                <img src="https://images8.alphacoders.com/133/1335035.png" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <button class="bg-purple-600 px-6 py-2 rounded-full font-bold">Download 4K</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="inquiries-page" class="page-section">
+        <div class="max-w-4xl mx-auto mt-16 bg-purple-950/20 p-12 rounded-3xl border border-purple-900/50">
+            <h1 class="text-4xl font-black mb-2">Inquiries</h1>
+            <p class="text-purple-400 mb-12">Contact us for film requests or technical support.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center text-center space-y-3 p-6 bg-purple-900/20 rounded-2xl border border-purple-900">
+                    <i class="fa-solid fa-envelope text-3xl text-purple-500"></i>
+                    <p class="text-xs uppercase tracking-widest text-gray-400">Email Address</p>
+                    <p class="font-bold text-lg">inquiries@eclipsenet.com</p>
+                </div>
+                <div class="flex flex-col items-center text-center space-y-3 p-6 bg-purple-900/20 rounded-2xl border border-purple-900">
+                    <i class="fa-solid fa-phone text-3xl text-purple-500"></i>
+                    <p class="text-xs uppercase tracking-widest text-gray-400">Contact No.</p>
+                    <p class="font-bold text-lg">0711430854</p>
+                </div>
+                <div class="flex flex-col items-center text-center space-y-3 p-6 bg-purple-900/20 rounded-2xl border border-purple-900">
+                    <i class="fa-brands fa-telegram text-3xl text-purple-500"></i>
+                    <p class="text-xs uppercase tracking-widest text-gray-400">Telegram No.</p>
+                    <p class="font-bold text-lg">071143854</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="details-page" class="fixed inset-0 z-[100] bg-[#0b0214] hidden overflow-y-auto">
         <div class="absolute top-8 left-28 z-[110]">
-            <button onclick="closeDetails()" class="flex items-center space-x-3 text-purple-400 hover:text-white transition group">
-                <i class="fa-solid fa-circle-chevron-left text-3xl"></i>
-                <span class="font-bold uppercase tracking-widest text-sm">Back To Home Page</span>
+            <button onclick="closeDetails()" class="flex items-center space-x-3 text-purple-400 hover:text-white transition font-bold uppercase text-sm">
+                <i class="fa-solid fa-circle-chevron-left text-3xl"></i><span>Return to EC</span>
             </button>
         </div>
-
-        <div class="h-[50vh] relative overflow-hidden">
-            <img id="detail-bg" src="" class="w-full h-full object-cover opacity-30 blur-md scale-110">
+        <div class="h-[50vh] relative">
+            <img id="detail-bg" class="w-full h-full object-cover opacity-30 blur-md">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0b0214] to-transparent"></div>
         </div>
-
         <div class="max-w-6xl mx-auto px-12 -mt-40 relative z-10 pb-20">
             <div class="flex flex-col md:flex-row gap-12">
-                <div class="w-full md:w-80 flex-shrink-0">
-                    <img id="detail-poster" src="" class="w-full rounded-2xl shadow-2xl border border-purple-900" alt="Poster">
-                </div>
-
+                <img id="detail-poster" class="w-80 rounded-2xl shadow-2xl border border-purple-900">
                 <div class="flex-grow space-y-6">
-                    <div class="flex items-center space-x-3 text-purple-400 font-bold uppercase text-xs tracking-widest">
-                        <span id="detail-tag">Netflix Series</span>
-                        <span class="text-purple-900">•</span>
-                        <span>Official Release</span>
-                    </div>
-                    
                     <h1 id="detail-title" class="text-6xl font-black tracking-tighter"></h1>
-                    
-                    <div class="flex items-center flex-wrap gap-6 text-gray-400 font-medium">
-                        <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> <span id="detail-rating"></span> IMDb</span>
-                        <span><i class="fa-solid fa-eye mr-2 text-purple-500"></i><span id="detail-views"></span> views</span>
-                        <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs" id="detail-year"></span>
+                    <div class="flex items-center space-x-6 text-gray-400 font-bold">
+                        <span class="text-yellow-500"><i class="fa-solid fa-star mr-2"></i> <span id="detail-rating"></span></span>
+                        <span id="detail-year"></span>
+                        <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs">ULTRA HD</span>
                     </div>
-
-                    <p id="detail-genre" class="text-xl text-purple-400 font-medium"></p>
-                    
-                    <div class="bg-purple-950/20 p-6 rounded-xl border border-purple-900/50 space-y-2">
-                        <h4 class="text-purple-500 font-bold uppercase text-xs tracking-widest">Description</h4>
-                        <p id="detail-desc" class="text-gray-200"></p>
-                    </div>
-
-                    <div class="space-y-4 pt-4">
-                        <h3 class="text-2xl font-bold">Secure Downloads</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition font-bold group border border-purple-900">
-                                <span>Download 480p</span>
-                                <span class="text-xs opacity-60">350MB <i class="fa-solid fa-download ml-2"></i></span>
-                            </a>
-                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition font-bold group border border-purple-900">
-                                <span>Download 720p</span>
-                                <span class="text-xs opacity-60">650MB <i class="fa-solid fa-download ml-2"></i></span>
-                            </a>
-                        </div>
-                    </div>
+                    <p id="detail-desc" class="text-gray-300 text-lg leading-relaxed"></p>
+                    <div class="pt-4"><button class="bg-purple-600 px-12 py-4 rounded-xl font-black text-xl hover:bg-purple-500 transition">DOWNLOAD FILM</button></div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // --- MOVIE DATABASE (10 ENTRIES) ---
-        const movieData = [
-            {
-                title: "Bloodhounds S2",
-                rating: "8.3",
-                views: "37,920",
-                year: "2026",
-                genre: "Action, Crime, Korea",
-                desc: "Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the feared kingpin of an underground gambling ring.",
-                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
-                tag: "Netflix Original"
-            },
-            {
-                title: "The Silent Sea",
-                rating: "7.9",
-                views: "22,410",
-                year: "2026",
-                genre: "Sci-Fi, Thriller",
-                desc: "During a perilous 24-hour mission on the moon, space explorers try to retrieve samples from an abandoned research facility steeped in classified secrets.",
-                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
-                tag: "Trending"
-            },
-            {
-                title: "Cyber City",
-                rating: "8.1",
-                views: "45,000",
-                year: "2025",
-                genre: "Action, Cyberpunk",
-                desc: "A rogue AI engineer creates a virus that gives citizens telekinetic powers in the neon-lit streets of Neo-Seoul.",
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
-                tag: "Recommended"
-            },
-            {
-                title: "Squid Game 2",
-                rating: "9.0",
-                views: "1.2M",
-                year: "2025",
-                genre: "Thriller, Drama",
-                desc: "Gi-hun abandons his plans to go to the US and starts a chase with a motive after the deadly game that he won.",
-                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
-                tag: "Must Watch"
-            },
-            {
-                title: "Phantom Thief",
-                rating: "7.5",
-                views: "18,200",
-                year: "2026",
-                genre: "Mystery, Action",
-                desc: "A master thief is forced into one last heist to save his family, but the target is the world's most secure digital vault.",
-                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
-                tag: "New Arrival"
-            },
-            {
-                title: "Iron Heart",
-                rating: "8.8",
-                views: "55,100",
-                year: "2026",
-                genre: "Adventure, Fantasy",
-                desc: "A young girl discovers she is the last descendant of a race of dragon riders and must find the hidden egg.",
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
-                tag: "Blockbuster"
-            },
-            {
-                title: "Night Walker",
-                rating: "6.9",
-                views: "12,300",
-                year: "2026",
-                genre: "Horror, Mystery",
-                desc: "A town is plagued by a mysterious entity that appears only at 3:00 AM. A group of teenagers tries to solve the legend.",
-                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
-                tag: "Late Night"
-            },
-            {
-                title: "The Outpost",
-                rating: "7.4",
-                views: "21,000",
-                year: "2025",
-                genre: "War, History",
-                desc: "Based on a true story of survival. A small unit of soldiers is trapped behind enemy lines.",
-                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
-                tag: "Historical"
-            },
-            {
-                title: "Ocean's Edge",
-                rating: "8.0",
-                views: "33,200",
-                year: "2026",
-                genre: "Action, Adventure",
-                desc: "An underwater expedition goes wrong when the crew discovers an ancient city that shouldn't exist.",
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
-                tag: "Top Rated"
-            },
-            {
-                title: "Zenith",
-                rating: "7.7",
-                views: "15,800",
-                year: "2026",
-                genre: "Sci-Fi, Drama",
-                desc: "Humanity's last hope rests on a ship traveling to a distant star. Tensions rise as the mission's true purpose is revealed.",
-                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
-                tag: "Sci-Fi"
-            }
+        // --- FILM DATABASE ---
+        const movies = [
+            { title: "Bloodhounds S2", rating: "8.3", year: "2026", desc: "Gun-woo and Woo-jin are back in the ring, forced to dismantle an underground gambling operation to protect their dreams.", img: "https://static.digit.in/Netflix-Bloodhound-season-2.png" },
+            { title: "Shadow Realm", rating: "7.9", year: "2026", desc: "A journey into a parallel dimension where light and shadow are the only weapons for survival.", img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536" },
+            { title: "The Silent Sea", rating: "7.5", year: "2026", desc: "Explorers uncover deadly secrets at an abandoned lunar base while looking for samples to save Earth.", img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" },
+            { title: "Cyber City", rating: "8.1", year: "2025", desc: "In Neo-Seoul, a virus gives citizens superhuman abilities, sparking a war between corporate powers.", img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg" }
         ];
 
-        // --- RENDER TOP 10 LIST AUTOMATICALLY ---
-        const grid = document.getElementById('movie-grid');
-        movieData.forEach((movie, index) => {
-            const card = `
-                <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails(${index})">
-                    <span class="top-10-number">${index + 1}</span>
-                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
-                        <img src="${movie.img}" class="w-full h-full object-cover" alt="${movie.title}">
-                    </div>
-                </div>
-            `;
-            grid.innerHTML += card;
-        });
-
-        // --- WELCOME OVERLAY LOGIC ---
-        window.addEventListener('DOMContentLoaded', () => {
-            const overlay = document.getElementById('welcome-overlay');
-            setTimeout(() => {
-                overlay.style.opacity = '0';
-                overlay.style.visibility = 'hidden';
-                document.body.classList.remove('overflow-hidden');
-                document.body.classList.add('overflow-x-hidden');
-            }, 3500);
-        });
-
-        // --- DYNAMIC DETAILS PAGE LOGIC ---
-        const detailsPage = document.getElementById('details-page');
-
-        function openDetails(index) {
-            const movie = movieData[index];
+        // --- PAGE SWITCHER LOGIC ---
+        function switchPage(pageId, navEl) {
+            document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
             
-            // Inject Movie Data into Details Page
-            document.getElementById('detail-title').innerText = movie.title + " (" + movie.year + ")";
-            document.getElementById('detail-rating').innerText = movie.rating;
-            document.getElementById('detail-views').innerText = movie.views;
-            document.getElementById('detail-year').innerText = movie.year;
-            document.getElementById('detail-genre').innerText = movie.genre;
-            document.getElementById('detail-desc').innerText = movie.desc;
-            document.getElementById('detail-poster').src = movie.img;
-            document.getElementById('detail-bg').src = movie.img;
-            document.getElementById('detail-tag').innerText = movie.tag;
+            document.querySelectorAll('.nav-item i').forEach(i => i.classList.remove('active-nav'));
+            navEl.querySelector('i').classList.add('active-nav');
+            window.scrollTo(0,0);
+        }
 
-            // Show Page with Animation
-            detailsPage.classList.remove('hidden');
-            setTimeout(() => {
-                detailsPage.classList.add('active');
-            }, 10);
+        // --- RENDER DYNAMIC LISTS ---
+        function initApp() {
+            const top10Grid = document.getElementById('top-10-grid');
+            const fullList = document.getElementById('full-movie-list');
+            
+            movies.forEach((m, i) => {
+                // Top 10 Home Grid
+                top10Grid.innerHTML += `
+                    <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails(${i})">
+                        <span class="top-10-number">${i+1}</span>
+                        <div class="w-72 h-40 rounded-md overflow-hidden border-2 border-transparent group-hover:border-purple-500 transition shadow-2xl">
+                            <img src="${m.img}" class="w-full h-full object-cover">
+                        </div>
+                    </div>`;
+                
+                // Full Movie Page Grid
+                fullList.innerHTML += `
+                    <div class="group cursor-pointer" onclick="openDetails(${i})">
+                        <div class="aspect-[2/3] rounded-xl overflow-hidden border border-purple-900 group-hover:border-purple-500 transition">
+                            <img src="${m.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <h4 class="mt-4 font-bold text-purple-100">${m.title}</h4>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1 font-bold"><span>${m.year}</span><span>⭐ ${m.rating}</span></div>
+                    </div>`;
+            });
+        }
+
+        // --- DETAILS OVERLAY LOGIC ---
+        function openDetails(i) {
+            const m = movies[i];
+            document.getElementById('detail-title').innerText = m.title;
+            document.getElementById('detail-rating').innerText = m.rating;
+            document.getElementById('detail-year').innerText = m.year;
+            document.getElementById('detail-desc').innerText = m.desc;
+            document.getElementById('detail-poster').src = m.img;
+            document.getElementById('detail-bg').src = m.img;
+            
+            const dp = document.getElementById('details-page');
+            dp.classList.remove('hidden');
+            setTimeout(() => dp.classList.add('active'), 10);
             document.body.style.overflow = 'hidden';
         }
 
         function closeDetails() {
-            detailsPage.classList.remove('active');
-            setTimeout(() => {
-                detailsPage.classList.add('hidden');
-            }, 500);
+            const dp = document.getElementById('details-page');
+            dp.classList.remove('active');
+            setTimeout(() => dp.classList.add('hidden'), 500);
             document.body.style.overflow = 'auto';
         }
+
+        // --- LOAD EVENT ---
+        window.addEventListener('DOMContentLoaded', () => {
+            initApp();
+            setTimeout(() => {
+                const overlay = document.getElementById('welcome-overlay');
+                overlay.style.opacity = '0';
+                overlay.style.visibility = 'hidden';
+                document.body.classList.remove('overflow-hidden');
+            }, 3500);
+        });
     </script>
 </body>
 </html>
