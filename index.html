@@ -192,16 +192,19 @@
                     </h1>
                 </div>
                 <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
-                    <span class="text-white">⭐ 6.7</span>
+                    <span class="text-white">⭐ 8.3</span>
                     <span>2026</span>
-                    <span>2h 15m</span>
-                    <span class="border border-purple-800 px-1 rounded text-[10px]">EP-7</span>
-                    <span class="text-purple-400 font-medium">Sci-Fi • Adventure • Action • Crime</span>
+                    <span>Season 2</span>
+                    <span class="border border-purple-800 px-1 rounded text-[10px]">HD</span>
+                    <span class="text-purple-400 font-medium">Action • Crime • Drama</span>
                 </div>
-                <p class="text-lg text-gray-300 leading-relaxed font-medium">Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the kingpin of an underground gambling ring.</p>
+                <p class="text-lg text-gray-300 leading-relaxed font-medium">Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by a feared underground kingpin.</p>
                 <div class="pt-4 flex space-x-4">
                     <button onclick="openDetails(0)" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-purple-100 transition flex items-center">
                         <i class="fa-solid fa-play mr-2 text-purple-600"></i> Play Now
+                    </button>
+                    <button onclick="openDetails(0)" class="bg-gray-500/30 backdrop-blur-md text-white px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">
+                        Details
                     </button>
                 </div>
             </div>
@@ -209,7 +212,7 @@
 
         <main class="relative z-30 ml-20 mt-4 px-16 pb-20">
             <h3 class="text-2xl font-bold mb-6">Top 10 in Movies</h3>
-            <div id="movie-list" class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
+            <div id="movie-grid" class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
                 </div>
         </main>
     </div>
@@ -243,16 +246,16 @@
                     <h1 id="detail-title" class="text-6xl font-black tracking-tighter"></h1>
                     
                     <div class="flex items-center flex-wrap gap-6 text-gray-400 font-medium">
-                        <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> <span id="detail-imdb"></span> IMDb</span>
+                        <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> <span id="detail-rating"></span> IMDb</span>
                         <span><i class="fa-solid fa-eye mr-2 text-purple-500"></i><span id="detail-views"></span> views</span>
                         <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs" id="detail-year">2026</span>
                     </div>
 
-                    <p id="detail-genres" class="text-xl text-purple-400 font-medium"></p>
+                    <p id="detail-genre" class="text-xl text-purple-400 font-medium"></p>
                     
                     <div class="bg-purple-950/20 p-6 rounded-xl border border-purple-900/50 space-y-2">
                         <h4 class="text-purple-500 font-bold uppercase text-xs tracking-widest">Description</h4>
-                        <p id="detail-desc" class="text-gray-200 leading-relaxed"></p>
+                        <p id="detail-desc" class="text-gray-200"></p>
                     </div>
 
                     <div class="space-y-4 pt-4">
@@ -274,123 +277,113 @@
     </div>
 
     <script>
-        // MOVIE DATA
-        const movies = [
-            
-            {   title: "Bloodhounds",
+        // MOVIE DATABASE
+        const movieData = [
+            {
+                title: "Bloodhounds S2",
+                rating: "8.3",
+                views: "37,920",
                 year: "2026",
-                imdb: "8.3",
-                views: "37,920"
-                genres: "Action, Crime, Drama",
-                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
-                desc: "Kim Gun-Woo and Hong Woo-Jin return to the ring. Dream turns into a nightmare when a powerful kingpin targets them for an illegal gambling ring. The duo must fight to survive and take down the empire.",
+                genre: "Action, Crime, Drama",
+                desc: "Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the feared kingpin of an underground gambling ring. They decide to wipe out the ring for good.",
+                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
                 tag: "Netflix Original"
             },
             {
-                title: "Big Mouth",
-                year: "2022",
-                imdb: "8.25",
-                views: "22,140",
-                genres: "Crime, Drama, Mystery",
-                img: "https://cinesubz.lk/wp-content/uploads/2022/12/Big-Mouth-2022-TV-S01-Complete.jpg",
-                desc: "Caught up in a murder case, an underperforming lawyer gets pegged as the notorious swindler, Big Mouse.",
+                title: "Shadow Realm",
+                rating: "7.9",
+                views: "22,410",
+                year: "2026",
+                genre: "Sci-Fi, Thriller",
+                desc: "In a futuristic society, a detective discovers a gateway to a parallel dimension where shadows have a life of their own. He must close the gate before the darkness consumes Earth.",
+                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
                 tag: "Eclipse Exclusive"
             },
             {
-                title: "The Roundup",
-                year: "2022",
-                imdb: "7.2",
-                views: "45,000",
-                genres: "Action, Crime",
-                img: "https://cinesubz.lk/wp-content/uploads/2022/07/v6y1WI9XR9vnhhLhvFfS11mlmIA.jpg",
-                desc: "An officer goes to Vietnam with his partner to extradite a victim and bring him back to South Korea. However, their simple assignment takes many shocking twists and turns.",
-                tag: "Eclipse Exclusive"
-            }, 
-            {
                 title: "Cyber City",
-                year: "2025",
-                imdb: "8.1",
+                rating: "8.1",
                 views: "45,000",
-                genres: "Cyberpunk, Action",
+                year: "2025",
+                genre: "Action, Cyberpunk",
+                desc: "A rogue AI engineer creates a virus that gives citizens telekinetic powers. The government sends a task force to contain the chaos in the neon-lit streets of Neo-Seoul.",
                 img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
-                desc: "A futuristic detective hunts down rogue AI in a neon-drenched metropolis. The lines between machine and human blur.",
                 tag: "Recommended"
             },
             {
-                title: "The Last Gate",
-                year: "2026",
-                imdb: "7.5",
+                title: "The Silent Sea",
+                rating: "7.5",
                 views: "18,200",
-                genres: "Fantasy, Adventure",
+                year: "2026",
+                genre: "Mystery, Sci-Fi",
+                desc: "A group of scientists travels to the moon to retrieve samples from an abandoned research station, only to find that they are not alone in the lunar darkness.",
                 img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
-                desc: "When the ancient gates of the underworld open, a group of unlikely heroes must travel to the center of the earth.",
-                tag: "Trending"
-            },
-            {
-                title: "Silent Sea",
-                year: "2025",
-                imdb: "8.0",
-                views: "31,500",
-                genres: "Mystery, Sci-Fi",
-                img: "https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMhaJPPaMEYR2s/AAAABU7-2kHjM3u3n2D_Tz5uG_hYfU-0ZzZ_m_X_vS_vS_vS_vS_vS.jpg",
-                desc: "Moon base survivors discover a substance that could save or destroy Earth's water supply.",
                 tag: "Must Watch"
             },
             {
-                title: "Night Walker",
+                title: "Iron Heart",
+                rating: "8.8",
+                views: "55,100",
                 year: "2026",
-                imdb: "6.9",
-                views: "12,400",
-                genres: "Horror, Mystery",
-                img: "https://images6.alphacoders.com/133/1338634.png",
-                desc: "A journalist investigates a series of disappearances in a town where the sun never rises.",
+                genre: "Adventure, Fantasy",
+                desc: "A young girl discovers she is the last descendant of a race of dragon riders. She must find the hidden egg before the dark lord uses its power to rule the kingdom.",
+                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
+                tag: "Blockbuster"
+            },
+            {
+                title: "Night Walker",
+                rating: "6.9",
+                views: "12,300",
+                year: "2026",
+                genre: "Horror, Mystery",
+                desc: "A town plagued by a mysterious entity that appears only at 3:00 AM. A group of teenagers tries to solve the legend before they become the next victims.",
+                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
                 tag: "New Arrival"
             },
             {
-                title: "Iron Heart",
-                year: "2026",
-                imdb: "8.5",
-                views: "52,000",
-                genres: "Superhero, Tech",
-                img: "https://wallpapers.com/images/featured/cool-movie-background-87ee785y5hb57p99.jpg",
-                desc: "The next generation of armor technology falls into the wrong hands. One student must fight back.",
-                tag: "Premium"
+                title: "The Outpost",
+                rating: "7.4",
+                views: "21,000",
+                year: "2025",
+                genre: "War, History",
+                desc: "Based on a true story of survival. A small unit of soldiers is trapped behind enemy lines and must use every resource to return home.",
+                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
+                tag: "Trending"
             },
             {
-                title: "Echoes",
+                title: "Ocean's Edge",
+                rating: "8.0",
+                views: "33,200",
                 year: "2026",
-                imdb: "7.2",
-                views: "9,800",
-                genres: "Drama, Romance",
-                img: "https://images.hdqwalls.com/download/the-batman-movie-2022-4k-5b-2560x1440.jpg",
-                desc: "Two people connected by a time-traveling radio must solve a cold case to save each other.",
+                genre: "Action, Adventure",
+                desc: "An underwater expedition goes wrong when the crew discovers a city that shouldn't exist. Now they are being hunted by guardians of the deep.",
+                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
                 tag: "Top Rated"
             },
             {
-                title: "The Outpost",
-                year: "2025",
-                imdb: "7.8",
-                views: "25,300",
-                genres: "War, Action",
-                img: "https://wallpapercave.com/wp/wp1934001.jpg",
-                desc: "Soldiers trapped behind enemy lines must make a final stand against overwhelming odds.",
-                tag: "Action Packed"
+                title: "Zenith",
+                rating: "7.7",
+                views: "15,800",
+                year: "2026",
+                genre: "Sci-Fi, Drama",
+                desc: "Humanity's last hope rests on a ship traveling to a distant star. Tensions rise as the crew realizes the mission's true purpose.",
+                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
+                tag: "Exclusive"
             },
             {
-                title: "Zenith",
+                title: "Phantom",
+                rating: "8.5",
+                views: "42,900",
                 year: "2026",
-                imdb: "9.0",
-                views: "60,000",
-                genres: "Epic, Sci-Fi",
-                img: "https://wallpaperaccess.com/full/1079102.jpg",
-                desc: "The ultimate journey across the universe to find the source of life itself.",
-                tag: "Masterpiece"
+                genre: "Crime, Thriller",
+                desc: "A master thief is forced into one last heist to save his family, but the target is the world's most secure digital vault.",
+                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
+                tag: "Highly Rated"
             }
         ];
 
         // RENDER TOP 10 LIST
-        const movieList = document.getElementById('movie-list');
-        movies.forEach((movie, index) => {
+        const grid = document.getElementById('movie-grid');
+        movieData.forEach((movie, index) => {
             const card = `
                 <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails(${index})">
                     <span class="top-10-number">${index + 1}</span>
@@ -399,10 +392,10 @@
                     </div>
                 </div>
             `;
-            movieList.innerHTML += card;
+            grid.innerHTML += card;
         });
 
-        // WELCOME OVERLAY
+        // WELCOME OVERLAY LOGIC
         window.addEventListener('DOMContentLoaded', () => {
             const overlay = document.getElementById('welcome-overlay');
             setTimeout(() => {
@@ -416,20 +409,21 @@
         // DETAILS PAGE LOGIC
         const detailsPage = document.getElementById('details-page');
 
-        function openDetails(id) {
-            const movie = movies[id];
+        function openDetails(index) {
+            const movie = movieData[index];
             
-            // Fill page with movie data
+            // Update the UI
             document.getElementById('detail-title').innerText = movie.title;
-            document.getElementById('detail-imdb').innerText = movie.imdb;
+            document.getElementById('detail-rating').innerText = movie.rating;
             document.getElementById('detail-views').innerText = movie.views;
             document.getElementById('detail-year').innerText = movie.year;
-            document.getElementById('detail-genres').innerText = movie.genres;
+            document.getElementById('detail-genre').innerText = movie.genre;
             document.getElementById('detail-desc').innerText = movie.desc;
-            document.getElementById('detail-tag').innerText = movie.tag;
             document.getElementById('detail-poster').src = movie.img;
             document.getElementById('detail-bg').src = movie.img;
+            document.getElementById('detail-tag').innerText = movie.tag;
 
+            // Animate Page
             detailsPage.classList.remove('hidden');
             setTimeout(() => {
                 detailsPage.classList.add('active');
