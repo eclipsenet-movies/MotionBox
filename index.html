@@ -74,6 +74,8 @@
             height: 100vh;
             background: url('https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg') center/cover no-repeat;
             margin-left: 80px;
+            transition: transform 0.8s ease-in-out, opacity 0.6s ease-in-out;
+            z-index: 40;
         }
         .hero-section .overlay {
             position: absolute;
@@ -195,20 +197,20 @@
     </nav>
 
     <div id="home-content">
-        <section class="hero-section">
+        <section class="hero-section" id="hero-section">
             <div class="overlay">
                 <div class="welcome-content">
                     <h1>Unlimited Movies & Series.</h1>
                     <p>Download your favorites in 4K Ultra-HD. Watch anywhere.</p>
                     <div class="cta-group">
                         <input type="email" placeholder="Email address" class="email-input">
-                        <button class="btn-main">Get Started &rsaquo;</button>
+                        <button class="btn-main" onclick="hideHero()">Get Started &rsaquo;</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <main class="relative z-30 ml-20 mt-12 px-16 pb-20">
+        <main id="main-movies" class="relative z-30 ml-20 mt-12 px-16 pb-20 hidden">
             <h3 class="text-2xl font-bold mb-6">Top 10 in Movies</h3>
             <div id="movie-grid" class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
                 </div>
@@ -233,29 +235,23 @@
                 <div class="w-full md:w-80 flex-shrink-0">
                     <img id="detail-poster" src="" class="w-full rounded-2xl shadow-2xl border border-purple-900" alt="Poster">
                 </div>
-
                 <div class="flex-grow space-y-6">
                     <div class="flex items-center space-x-3 text-purple-400 font-bold uppercase text-xs tracking-widest">
                         <span id="detail-tag">Netflix Series</span>
                         <span class="text-purple-900">•</span>
                         <span>Official Release</span>
                     </div>
-                    
                     <h1 id="detail-title" class="text-6xl font-black tracking-tighter"></h1>
-                    
                     <div class="flex items-center flex-wrap gap-6 text-gray-400 font-medium">
                         <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> <span id="detail-rating"></span> IMDb</span>
                         <span><i class="fa-solid fa-eye mr-2 text-purple-500"></i><span id="detail-views"></span> views</span>
                         <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs" id="detail-year"></span>
                     </div>
-
                     <p id="detail-genre" class="text-xl text-purple-400 font-medium"></p>
-                    
                     <div class="bg-purple-950/20 p-6 rounded-xl border border-purple-900/50 space-y-2">
                         <h4 class="text-purple-500 font-bold uppercase text-xs tracking-widest">Description</h4>
                         <p id="detail-desc" class="text-gray-200"></p>
                     </div>
-
                     <div class="space-y-4 pt-4">
                         <h3 class="text-2xl font-bold">Secure Downloads</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -276,107 +272,31 @@
 
     <script>
         const movieData = [
-            {
-                title: "Bloodhounds S2",
-                rating: "8.3",
-                views: "37,920",
-                year: "2026",
-                genre: "Action, Crime, Korea",
-                desc: "Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the feared kingpin of an underground gambling ring.",
-                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
-                tag: "Netflix Original"
-            },
-            {
-                title: "The Silent Sea",
-                rating: "7.9",
-                views: "22,410",
-                year: "2026",
-                genre: "Sci-Fi, Thriller",
-                desc: "During a perilous 24-hour mission on the moon, space explorers try to retrieve samples from an abandoned research facility steeped in classified secrets.",
-                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
-                tag: "Trending"
-            },
-            {
-                title: "Cyber City",
-                rating: "8.1",
-                views: "45,000",
-                year: "2025",
-                genre: "Action, Cyberpunk",
-                desc: "A rogue AI engineer creates a virus that gives citizens telekinetic powers in the neon-lit streets of Neo-Seoul.",
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
-                tag: "Recommended"
-            },
-            {
-                title: "Squid Game 2",
-                rating: "9.0",
-                views: "1.2M",
-                year: "2025",
-                genre: "Thriller, Drama",
-                desc: "Gi-hun abandons his plans to go to the US and starts a chase with a motive after the deadly game that he won.",
-                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
-                tag: "Must Watch"
-            },
-            {
-                title: "Phantom Thief",
-                rating: "7.5",
-                views: "18,200",
-                year: "2026",
-                genre: "Mystery, Action",
-                desc: "A master thief is forced into one last heist to save his family, but the target is the world's most secure digital vault.",
-                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
-                tag: "New Arrival"
-            },
-            {
-                title: "Iron Heart",
-                rating: "8.8",
-                views: "55,100",
-                year: "2026",
-                genre: "Adventure, Fantasy",
-                desc: "A young girl discovers she is the last descendant of a race of dragon riders and must find the hidden egg.",
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
-                tag: "Blockbuster"
-            },
-            {
-                title: "Night Walker",
-                rating: "6.9",
-                views: "12,300",
-                year: "2026",
-                genre: "Horror, Mystery",
-                desc: "A town is plagued by a mysterious entity that appears only at 3:00 AM. A group of teenagers tries to solve the legend.",
-                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
-                tag: "Late Night"
-            },
-            {
-                title: "The Outpost",
-                rating: "7.4",
-                views: "21,000",
-                year: "2025",
-                genre: "War, History",
-                desc: "Based on a true story of survival. A small unit of soldiers is trapped behind enemy lines.",
-                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
-                tag: "Historical"
-            },
-            {
-                title: "Ocean's Edge",
-                rating: "8.0",
-                views: "33,200",
-                year: "2026",
-                genre: "Action, Adventure",
-                desc: "An underwater expedition goes wrong when the crew discovers an ancient city that shouldn't exist.",
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
-                tag: "Top Rated"
-            },
-            {
-                title: "Zenith",
-                rating: "7.7",
-                views: "15,800",
-                year: "2026",
-                genre: "Sci-Fi, Drama",
-                desc: "Humanity's last hope rests on a ship traveling to a distant star. Tensions rise as the mission's true purpose is revealed.",
-                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
-                tag: "Sci-Fi"
-            }
+            { title: "Bloodhounds S2", rating: "8.3", views: "37,920", year: "2026", genre: "Action, Crime, Korea", desc: "Gun-woo and Woo-jin return to boxing with dreams of a championship.", img: "https://static.digit.in/Netflix-Bloodhound-season-2.png", tag: "Netflix Original" },
+            { title: "The Silent Sea", rating: "7.9", views: "22,410", year: "2026", genre: "Sci-Fi, Thriller", desc: "Space explorers try to retrieve samples from an abandoned research facility.", img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg", tag: "Trending" },
+            { title: "Cyber City", rating: "8.1", views: "45,000", year: "2025", genre: "Action, Cyberpunk", desc: "A rogue AI engineer creates a virus in Neo-Seoul.", img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg", tag: "Recommended" },
+            { title: "Squid Game 2", rating: "9.0", views: "1.2M", year: "2025", genre: "Thriller, Drama", desc: "Gi-hun starts a chase with a motive after the deadly game.", img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536", tag: "Must Watch" },
+            { title: "Phantom Thief", rating: "7.5", views: "18,200", year: "2026", genre: "Mystery, Action", desc: "A master thief is forced into one last heist.", img: "https://static.digit.in/Netflix-Bloodhound-season-2.png", tag: "New Arrival" },
+            { title: "Iron Heart", rating: "8.8", views: "55,100", year: "2026", genre: "Adventure, Fantasy", desc: "A young girl discovers she is the last descendant of dragon riders.", img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg", tag: "Blockbuster" },
+            { title: "Night Walker", rating: "6.9", views: "12,300", year: "2026", genre: "Horror, Mystery", desc: "A town is plagued by a mysterious entity at 3:00 AM.", img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg", tag: "Late Night" },
+            { title: "The Outpost", rating: "7.4", views: "21,000", year: "2025", genre: "War, History", desc: "True story of survival behind enemy lines.", img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536", tag: "Historical" },
+            { title: "Ocean's Edge", rating: "8.0", views: "33,200", year: "2026", genre: "Action, Adventure", desc: "Expedition discovers an ancient city.", img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg", tag: "Top Rated" },
+            { title: "Zenith", rating: "7.7", views: "15,800", year: "2026", genre: "Sci-Fi, Drama", desc: "Humanity's last hope rests on a ship traveling to a distant star.", img: "https://static.digit.in/Netflix-Bloodhound-season-2.png", tag: "Sci-Fi" }
         ];
+
+        // --- HIDE HERO & SHOW HOME ---
+        function hideHero() {
+            const hero = document.getElementById('hero-section');
+            const mainMovies = document.getElementById('main-movies');
+            
+            hero.style.transform = "translateY(-100%)";
+            hero.style.opacity = "0";
+            
+            setTimeout(() => {
+                hero.style.display = "none";
+                mainMovies.classList.remove('hidden');
+            }, 800);
+        }
 
         const grid = document.getElementById('movie-grid');
         movieData.forEach((movie, index) => {
@@ -397,7 +317,6 @@
                 overlay.style.opacity = '0';
                 overlay.style.visibility = 'hidden';
                 document.body.classList.remove('overflow-hidden');
-                document.body.classList.add('overflow-x-hidden');
             }, 3500);
         });
 
