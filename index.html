@@ -67,7 +67,6 @@
 
         @keyframes loading { 100% { left: 100%; } }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        /* ------------------------------ */
 
         .hero-gradient {
             background: linear-gradient(to right, #0b0214 25%, rgba(11, 2, 20, 0.4) 60%, transparent 100%);
@@ -119,7 +118,8 @@
         }
     </style>
 </head>
-<body class="overflow-hidden"> <div id="welcome-overlay">
+<body class="overflow-hidden"> 
+    <div id="welcome-overlay">
         <h1 class="welcome-text">Hello Raveena Gunawardana,</h1>
         <p class="welcome-subtext">Welcome to Our EC Movie Downloading Web Site</p>
         <div class="loader-line"></div>
@@ -175,60 +175,42 @@
                 <div class="flex items-center space-x-2 text-purple-400 font-bold uppercase text-xs tracking-widest">
                     <i class="fa-solid fa-star"></i> <span>Premium Feature</span>
                 </div>
-            <style>
-                .bloodhound-font {
-                    font-family: 'Archivo Black', sans-serif;
-                    font-style: italic; 
-                    background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), #ffffff;
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
-                    letter-spacing: -0.05em;
-                }
-            </style>
-
-            <div class="py-2">
-                <h1 class="bloodhound-font text-7xl font-black tracking-tighter leading-[0.75] uppercase">
-                    Bloodhounds<br><span class="text-5xl tracking-normal text-purple-100">Season 2</span>
-                </h1>
-            </div>
-                    
-            <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
-                <span class="text-white">⭐ 6.7</span>
-                <span>2026</span>
-                <span>2h 15m</span>
-                <span class="border border-purple-800 px-1 rounded text-[10px]">EP-7</span>
-                <span class="text-purple-400 font-medium">Sci-Fi • Adventure • Action • Crime</span>
-            </div>
-                
-                <p class="text-lg text-gray-300 leading-relaxed font-medium">Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the feared kingpin of an underground gambling ring. When Baek-jeong tries to force Gun-woo into illegal fighting, the duo teams up to dismantle his criminal empire and wipe out the ring for good.</p>
+                <style>
+                    .bloodhound-font {
+                        font-family: 'Archivo Black', sans-serif;
+                        font-style: italic; 
+                        background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), #ffffff;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
+                        letter-spacing: -0.05em;
+                    }
+                </style>
+                <div class="py-2">
+                    <h1 class="bloodhound-font text-7xl font-black tracking-tighter leading-[0.75] uppercase">
+                        Bloodhounds<br><span class="text-5xl tracking-normal text-purple-100">Season 2</span>
+                    </h1>
+                </div>
+                <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
+                    <span class="text-white">⭐ 6.7</span>
+                    <span>2026</span>
+                    <span>2h 15m</span>
+                    <span class="border border-purple-800 px-1 rounded text-[10px]">EP-7</span>
+                    <span class="text-purple-400 font-medium">Sci-Fi • Adventure • Action • Crime</span>
+                </div>
+                <p class="text-lg text-gray-300 leading-relaxed font-medium">Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the kingpin of an underground gambling ring.</p>
                 <div class="pt-4 flex space-x-4">
-                    <button onclick="openDetails()" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-purple-100 transition flex items-center">
+                    <button onclick="openDetails(0)" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-purple-100 transition flex items-center">
                         <i class="fa-solid fa-play mr-2 text-purple-600"></i> Play Now
-		   </button>
-                   <button class="bg-gray-500/30 backdrop-blur-md text-white px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">
-                    Details
-               	   </button>
+                    </button>
                 </div>
             </div>
         </section>
 
         <main class="relative z-30 ml-20 mt-4 px-16 pb-20">
             <h3 class="text-2xl font-bold mb-6">Top 10 in Movies</h3>
-            <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
-                <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails()">
-                    <span class="top-10-number">1</span>
-                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
-                        <img src="https://static.digit.in/Netflix-Bloodhound-season-2.png" class="w-full h-full object-cover" alt="Bloodhounds">
-                    </div>
+            <div id="movie-list" class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
                 </div>
-                <div class="flex items-center flex-shrink-0 group cursor-pointer">
-                    <span class="top-10-number">2</span>
-                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
-                        <img src="https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?base_image_bucket_name=image_manager&base_image=6c088450-1ef4-41fa-b35a-c4021e5d309d&region=US&format=webp&size=952x536" class="w-full h-full object-cover" alt="Film 2">
-                    </div>
-                </div>
-            </div>
         </main>
     </div>
 
@@ -241,37 +223,36 @@
         </div>
 
         <div class="h-[50vh] relative overflow-hidden">
-            <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full h-full object-cover opacity-30 blur-md scale-110">
+            <img id="detail-bg" src="" class="w-full h-full object-cover opacity-30 blur-md scale-110">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0b0214] to-transparent"></div>
         </div>
 
         <div class="max-w-6xl mx-auto px-12 -mt-40 relative z-10 pb-20">
             <div class="flex flex-col md:flex-row gap-12">
                 <div class="w-full md:w-80 flex-shrink-0">
-                    <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full rounded-2xl shadow-2xl border border-purple-900" alt="Poster">
+                    <img id="detail-poster" src="" class="w-full rounded-2xl shadow-2xl border border-purple-900" alt="Poster">
                 </div>
 
                 <div class="flex-grow space-y-6">
                     <div class="flex items-center space-x-3 text-purple-400 font-bold uppercase text-xs tracking-widest">
-                        <span>Netflix Series</span>
+                        <span id="detail-tag">Netflix Series</span>
                         <span class="text-purple-900">•</span>
-                        <span>Season 02 (Complete)</span>
+                        <span>Complete</span>
                     </div>
                     
-                    <h1 class="text-6xl font-black tracking-tighter">Bloodhounds (2026)</h1>
+                    <h1 id="detail-title" class="text-6xl font-black tracking-tighter"></h1>
                     
                     <div class="flex items-center flex-wrap gap-6 text-gray-400 font-medium">
-                        <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> 8.3 IMDb</span>
-                        <span>60 votes</span>
-                        <span><i class="fa-solid fa-eye mr-2 text-purple-500"></i>37,920 views</span>
-                        <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs">2026</span>
+                        <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> <span id="detail-imdb"></span> IMDb</span>
+                        <span><i class="fa-solid fa-eye mr-2 text-purple-500"></i><span id="detail-views"></span> views</span>
+                        <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs" id="detail-year">2026</span>
                     </div>
 
-                    <p class="text-xl text-purple-400 font-medium">Action & Adventure, Crime, Drama, Korea</p>
+                    <p id="detail-genres" class="text-xl text-purple-400 font-medium"></p>
                     
                     <div class="bg-purple-950/20 p-6 rounded-xl border border-purple-900/50 space-y-2">
-                        <h4 class="text-purple-500 font-bold uppercase text-xs tracking-widest">Episode Info</h4>
-                        <p class="text-gray-200">Episode 01-07 — All episodes available for high-speed download.<br>Kim Gun-Woo (Woo Do-Hwan) and Hong Woo-Jin (Lee Sang-Yi) are back in the sport of boxing. Kim Gun-Woo is a promising boxer and dreams of becoming a champion. Im Baek-Jeong (Rain) appears in front of Kim Gun-Woo. Im Baek-Jeong is a powerful man and feared. He runs an underground gambling operation centered around boxing. Im Baek-Jeong tries to lure Kim Gun-Woo into his underground fighting world and doesn't hesitate to use any means necessary. Against Im Baek-Jeong, Kim Gun-Woo and Hong Woo-Jin decide to wipeout the illegal fighting ring.</p>
+                        <h4 class="text-purple-500 font-bold uppercase text-xs tracking-widest">Description</h4>
+                        <p id="detail-desc" class="text-gray-200 leading-relaxed"></p>
                     </div>
 
                     <div class="space-y-4 pt-4">
@@ -293,11 +274,127 @@
     </div>
 
     <script>
-        // WELCOME OVERLAY LOGIC
+        // MOVIE DATA
+        const movies = [
+            {
+                title: "Bloodhounds S2",
+                year: "2026",
+                imdb: "8.3",
+                views: "37,920",
+                genres: "Action, Crime, Drama",
+                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
+                desc: "Kim Gun-Woo and Hong Woo-Jin return to the ring. Dream turns into a nightmare when a powerful kingpin targets them for an illegal gambling ring. The duo must fight to survive and take down the empire.",
+                tag: "Netflix Original"
+            },
+            {
+                title: "Shadow Realm",
+                year: "2026",
+                imdb: "7.9",
+                views: "22,140",
+                genres: "Sci-Fi, Thriller",
+                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
+                desc: "In a world where shadows can be harvested for energy, a young rebel discovers a dark secret that could end humanity.",
+                tag: "Eclipse Exclusive"
+            },
+            {
+                title: "Cyber City",
+                year: "2025",
+                imdb: "8.1",
+                views: "45,000",
+                genres: "Cyberpunk, Action",
+                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
+                desc: "A futuristic detective hunts down rogue AI in a neon-drenched metropolis. The lines between machine and human blur.",
+                tag: "Recommended"
+            },
+            {
+                title: "The Last Gate",
+                year: "2026",
+                imdb: "7.5",
+                views: "18,200",
+                genres: "Fantasy, Adventure",
+                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
+                desc: "When the ancient gates of the underworld open, a group of unlikely heroes must travel to the center of the earth.",
+                tag: "Trending"
+            },
+            {
+                title: "Silent Sea",
+                year: "2025",
+                imdb: "8.0",
+                views: "31,500",
+                genres: "Mystery, Sci-Fi",
+                img: "https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMhaJPPaMEYR2s/AAAABU7-2kHjM3u3n2D_Tz5uG_hYfU-0ZzZ_m_X_vS_vS_vS_vS_vS.jpg",
+                desc: "Moon base survivors discover a substance that could save or destroy Earth's water supply.",
+                tag: "Must Watch"
+            },
+            {
+                title: "Night Walker",
+                year: "2026",
+                imdb: "6.9",
+                views: "12,400",
+                genres: "Horror, Mystery",
+                img: "https://images6.alphacoders.com/133/1338634.png",
+                desc: "A journalist investigates a series of disappearances in a town where the sun never rises.",
+                tag: "New Arrival"
+            },
+            {
+                title: "Iron Heart",
+                year: "2026",
+                imdb: "8.5",
+                views: "52,000",
+                genres: "Superhero, Tech",
+                img: "https://wallpapers.com/images/featured/cool-movie-background-87ee785y5hb57p99.jpg",
+                desc: "The next generation of armor technology falls into the wrong hands. One student must fight back.",
+                tag: "Premium"
+            },
+            {
+                title: "Echoes",
+                year: "2026",
+                imdb: "7.2",
+                views: "9,800",
+                genres: "Drama, Romance",
+                img: "https://images.hdqwalls.com/download/the-batman-movie-2022-4k-5b-2560x1440.jpg",
+                desc: "Two people connected by a time-traveling radio must solve a cold case to save each other.",
+                tag: "Top Rated"
+            },
+            {
+                title: "The Outpost",
+                year: "2025",
+                imdb: "7.8",
+                views: "25,300",
+                genres: "War, Action",
+                img: "https://wallpapercave.com/wp/wp1934001.jpg",
+                desc: "Soldiers trapped behind enemy lines must make a final stand against overwhelming odds.",
+                tag: "Action Packed"
+            },
+            {
+                title: "Zenith",
+                year: "2026",
+                imdb: "9.0",
+                views: "60,000",
+                genres: "Epic, Sci-Fi",
+                img: "https://wallpaperaccess.com/full/1079102.jpg",
+                desc: "The ultimate journey across the universe to find the source of life itself.",
+                tag: "Masterpiece"
+            }
+        ];
+
+        // RENDER TOP 10 LIST
+        const movieList = document.getElementById('movie-list');
+        movies.forEach((movie, index) => {
+            const card = `
+                <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails(${index})">
+                    <span class="top-10-number">${index + 1}</span>
+                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
+                        <img src="${movie.img}" class="w-full h-full object-cover" alt="${movie.title}">
+                    </div>
+                </div>
+            `;
+            movieList.innerHTML += card;
+        });
+
+        // WELCOME OVERLAY
         window.addEventListener('DOMContentLoaded', () => {
             const overlay = document.getElementById('welcome-overlay');
-            
-            // Hide overlay after 3.5 seconds
             setTimeout(() => {
                 overlay.style.opacity = '0';
                 overlay.style.visibility = 'hidden';
@@ -306,10 +403,23 @@
             }, 3500);
         });
 
+        // DETAILS PAGE LOGIC
         const detailsPage = document.getElementById('details-page');
-        const homeContent = document.getElementById('home-content');
 
-        function openDetails() {
+        function openDetails(id) {
+            const movie = movies[id];
+            
+            // Fill page with movie data
+            document.getElementById('detail-title').innerText = movie.title;
+            document.getElementById('detail-imdb').innerText = movie.imdb;
+            document.getElementById('detail-views').innerText = movie.views;
+            document.getElementById('detail-year').innerText = movie.year;
+            document.getElementById('detail-genres').innerText = movie.genres;
+            document.getElementById('detail-desc').innerText = movie.desc;
+            document.getElementById('detail-tag').innerText = movie.tag;
+            document.getElementById('detail-poster').src = movie.img;
+            document.getElementById('detail-bg').src = movie.img;
+
             detailsPage.classList.remove('hidden');
             setTimeout(() => {
                 detailsPage.classList.add('active');
