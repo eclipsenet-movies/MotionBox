@@ -240,7 +240,7 @@
                     <div class="flex items-center space-x-3 text-purple-400 font-bold uppercase text-xs tracking-widest">
                         <span id="detail-tag">Netflix Series</span>
                         <span class="text-purple-900">•</span>
-                        <span>Complete</span>
+                        <span>Official Release</span>
                     </div>
                     
                     <h1 id="detail-title" class="text-6xl font-black tracking-tighter"></h1>
@@ -248,7 +248,7 @@
                     <div class="flex items-center flex-wrap gap-6 text-gray-400 font-medium">
                         <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> <span id="detail-rating"></span> IMDb</span>
                         <span><i class="fa-solid fa-eye mr-2 text-purple-500"></i><span id="detail-views"></span> views</span>
-                        <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs" id="detail-year">2026</span>
+                        <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs" id="detail-year"></span>
                     </div>
 
                     <p id="detail-genre" class="text-xl text-purple-400 font-medium"></p>
@@ -277,27 +277,27 @@
     </div>
 
     <script>
-        // MOVIE DATABASE
+        // --- MOVIE DATABASE (10 ENTRIES) ---
         const movieData = [
             {
                 title: "Bloodhounds S2",
                 rating: "8.3",
                 views: "37,920",
                 year: "2026",
-                genre: "Action, Crime, Drama",
-                desc: "Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the feared kingpin of an underground gambling ring. They decide to wipe out the ring for good.",
+                genre: "Action, Crime, Korea",
+                desc: "Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the feared kingpin of an underground gambling ring.",
                 img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
                 tag: "Netflix Original"
             },
             {
-                title: "Shadow Realm",
+                title: "The Silent Sea",
                 rating: "7.9",
                 views: "22,410",
                 year: "2026",
                 genre: "Sci-Fi, Thriller",
-                desc: "In a futuristic society, a detective discovers a gateway to a parallel dimension where shadows have a life of their own. He must close the gate before the darkness consumes Earth.",
-                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
-                tag: "Eclipse Exclusive"
+                desc: "During a perilous 24-hour mission on the moon, space explorers try to retrieve samples from an abandoned research facility steeped in classified secrets.",
+                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
+                tag: "Trending"
             },
             {
                 title: "Cyber City",
@@ -305,19 +305,29 @@
                 views: "45,000",
                 year: "2025",
                 genre: "Action, Cyberpunk",
-                desc: "A rogue AI engineer creates a virus that gives citizens telekinetic powers. The government sends a task force to contain the chaos in the neon-lit streets of Neo-Seoul.",
+                desc: "A rogue AI engineer creates a virus that gives citizens telekinetic powers in the neon-lit streets of Neo-Seoul.",
                 img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
                 tag: "Recommended"
             },
             {
-                title: "The Silent Sea",
+                title: "Squid Game 2",
+                rating: "9.0",
+                views: "1.2M",
+                year: "2025",
+                genre: "Thriller, Drama",
+                desc: "Gi-hun abandons his plans to go to the US and starts a chase with a motive after the deadly game that he won.",
+                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
+                tag: "Must Watch"
+            },
+            {
+                title: "Phantom Thief",
                 rating: "7.5",
                 views: "18,200",
                 year: "2026",
-                genre: "Mystery, Sci-Fi",
-                desc: "A group of scientists travels to the moon to retrieve samples from an abandoned research station, only to find that they are not alone in the lunar darkness.",
-                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
-                tag: "Must Watch"
+                genre: "Mystery, Action",
+                desc: "A master thief is forced into one last heist to save his family, but the target is the world's most secure digital vault.",
+                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
+                tag: "New Arrival"
             },
             {
                 title: "Iron Heart",
@@ -325,7 +335,7 @@
                 views: "55,100",
                 year: "2026",
                 genre: "Adventure, Fantasy",
-                desc: "A young girl discovers she is the last descendant of a race of dragon riders. She must find the hidden egg before the dark lord uses its power to rule the kingdom.",
+                desc: "A young girl discovers she is the last descendant of a race of dragon riders and must find the hidden egg.",
                 img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
                 tag: "Blockbuster"
             },
@@ -335,9 +345,9 @@
                 views: "12,300",
                 year: "2026",
                 genre: "Horror, Mystery",
-                desc: "A town plagued by a mysterious entity that appears only at 3:00 AM. A group of teenagers tries to solve the legend before they become the next victims.",
-                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
-                tag: "New Arrival"
+                desc: "A town is plagued by a mysterious entity that appears only at 3:00 AM. A group of teenagers tries to solve the legend.",
+                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
+                tag: "Late Night"
             },
             {
                 title: "The Outpost",
@@ -345,9 +355,9 @@
                 views: "21,000",
                 year: "2025",
                 genre: "War, History",
-                desc: "Based on a true story of survival. A small unit of soldiers is trapped behind enemy lines and must use every resource to return home.",
+                desc: "Based on a true story of survival. A small unit of soldiers is trapped behind enemy lines.",
                 img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
-                tag: "Trending"
+                tag: "Historical"
             },
             {
                 title: "Ocean's Edge",
@@ -355,8 +365,8 @@
                 views: "33,200",
                 year: "2026",
                 genre: "Action, Adventure",
-                desc: "An underwater expedition goes wrong when the crew discovers a city that shouldn't exist. Now they are being hunted by guardians of the deep.",
-                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
+                desc: "An underwater expedition goes wrong when the crew discovers an ancient city that shouldn't exist.",
+                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
                 tag: "Top Rated"
             },
             {
@@ -365,23 +375,13 @@
                 views: "15,800",
                 year: "2026",
                 genre: "Sci-Fi, Drama",
-                desc: "Humanity's last hope rests on a ship traveling to a distant star. Tensions rise as the crew realizes the mission's true purpose.",
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
-                tag: "Exclusive"
-            },
-            {
-                title: "Phantom",
-                rating: "8.5",
-                views: "42,900",
-                year: "2026",
-                genre: "Crime, Thriller",
-                desc: "A master thief is forced into one last heist to save his family, but the target is the world's most secure digital vault.",
+                desc: "Humanity's last hope rests on a ship traveling to a distant star. Tensions rise as the mission's true purpose is revealed.",
                 img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
-                tag: "Highly Rated"
+                tag: "Sci-Fi"
             }
         ];
 
-        // RENDER TOP 10 LIST
+        // --- RENDER TOP 10 LIST AUTOMATICALLY ---
         const grid = document.getElementById('movie-grid');
         movieData.forEach((movie, index) => {
             const card = `
@@ -395,7 +395,7 @@
             grid.innerHTML += card;
         });
 
-        // WELCOME OVERLAY LOGIC
+        // --- WELCOME OVERLAY LOGIC ---
         window.addEventListener('DOMContentLoaded', () => {
             const overlay = document.getElementById('welcome-overlay');
             setTimeout(() => {
@@ -406,14 +406,14 @@
             }, 3500);
         });
 
-        // DETAILS PAGE LOGIC
+        // --- DYNAMIC DETAILS PAGE LOGIC ---
         const detailsPage = document.getElementById('details-page');
 
         function openDetails(index) {
             const movie = movieData[index];
             
-            // Update the UI
-            document.getElementById('detail-title').innerText = movie.title;
+            // Inject Movie Data into Details Page
+            document.getElementById('detail-title').innerText = movie.title + " (" + movie.year + ")";
             document.getElementById('detail-rating').innerText = movie.rating;
             document.getElementById('detail-views').innerText = movie.views;
             document.getElementById('detail-year').innerText = movie.year;
@@ -423,7 +423,7 @@
             document.getElementById('detail-bg').src = movie.img;
             document.getElementById('detail-tag').innerText = movie.tag;
 
-            // Animate Page
+            // Show Page with Animation
             detailsPage.classList.remove('hidden');
             setTimeout(() => {
                 detailsPage.classList.add('active');
