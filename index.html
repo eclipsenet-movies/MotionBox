@@ -261,33 +261,32 @@
         </div>
     </div>
 
-    <script>
-        // Welcome Overlay Logic
-        window.addEventListener('DOMContentLoaded', () => {
-            const overlay = document.getElementById('welcome-overlay');
-            setTimeout(() => {
-                overlay.style.opacity = '0';
-                overlay.style.visibility = 'hidden';
-                document.body.style.overflow = 'auto'; // Enable scrolling
-            }, 3000);
-        });
+   <script>
+        const detailsPage = document.getElementById('details-page');
+        const homeContent = document.getElementById('home-content');
 
-        // Details Page Logic
-        function openDetails() {
-            const page = document.getElementById('details-page');
-            page.classList.remove('hidden');
-            setTimeout(() => page.classList.add('active'), 10);
-            document.body.style.overflow = 'hidden';
-        }
+        function openDetails() {
+            // Unhide the page container
+            detailsPage.classList.remove('hidden');
+            // Add the 'active' class to trigger the sliding animation
+            setTimeout(() => {
+                detailsPage.classList.add('active');
+            }, 10);
+            // Lock body scroll
+            document.body.style.overflow = 'hidden';
+        }
 
-        function closeDetails() {
-            const page = document.getElementById('details-page');
-            page.classList.remove('active');
-            setTimeout(() => {
-                page.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 600);
-        }
-    </script>
+        function closeDetails() {
+            // Remove 'active' class to slide back
+            detailsPage.classList.remove('active');
+            // Wait for animation to finish then hide completely
+            setTimeout(() => {
+                detailsPage.classList.add('hidden');
+            }, 500);
+            // Unlock body scroll
+            document.body.style.overflow = 'auto';
+        }
+    </script>
 </body>
 </html>
+ 
