@@ -7,80 +7,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #0b0214; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f171e; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        /* --- WELCOME OVERLAY STYLES --- */
-        #welcome-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: #0b0214;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 1s ease-in-out, visibility 1s;
-        }
-
-        .welcome-text {
-            font-size: 2.5rem;
-            font-weight: 800;
-            text-align: center;
-            background: linear-gradient(to right, #d8b4fe, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards ease-out;
-        }
-
-        .welcome-subtext {
-            color: #a78bfa;
-            margin-top: 15px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            font-weight: 600;
-            opacity: 0;
-            animation: fadeInUp 1s forwards 0.5s ease-out;
-        }
-
-        .loader-line {
-            width: 200px;
-            height: 2px;
-            background: #2e1065;
-            margin-top: 30px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .loader-line::after {
-            content: '';
-            position: absolute;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: #a855f7;
-            animation: loading 2s infinite ease-in-out;
-        }
-
-        @keyframes loading { 100% { left: 100%; } }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        /* ------------------------------ */
-
         .hero-gradient {
-            background: linear-gradient(to right, #0b0214 25%, rgba(11, 2, 20, 0.4) 60%, transparent 100%);
+            background: linear-gradient(to right, #0f171e 25%, rgba(15, 23, 30, 0.4) 60%, transparent 100%);
         }
         .bottom-vignette {
-            background: linear-gradient(to top, #0b0214 15%, transparent 100%);
+            background: linear-gradient(to top, #0f171e 15%, transparent 100%);
         }
 
         .top-10-number {
             font-size: 10rem; 
             line-height: 1; 
             font-weight: 900; 
-            -webkit-text-stroke: 2px #4c1d95; 
+            -webkit-text-stroke: 2px #556677; 
             color: transparent;
             margin-right: -45px; 
             z-index: 10;
@@ -90,14 +30,16 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .sidebar-icon { color: #a855f7; transition: all 0.3s; cursor: pointer; }
+        /* Icon Colors set to Blue */
+        .sidebar-icon { color: #00a8e1; transition: all 0.3s; cursor: pointer; }
         .sidebar-icon:hover { color: #ffffff; transform: translateY(-2px); }
         
-        .active-nav { color: #ffffff; border-left: 3px solid #a855f7; }
+        /* Navigation Styles */
+        .active-nav { color: #ffffff; border-left: 3px solid #00a8e1; }
         .nav-item .nav-tooltip {
             position: absolute;
             left: 70px;
-            background: #a855f7;
+            background: #00a8e1;
             color: white;
             padding: 4px 10px;
             border-radius: 4px;
@@ -109,36 +51,25 @@
             white-space: nowrap;
         }
         .nav-item:hover .nav-tooltip { opacity: 1; }
-
-        #details-page {
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            transform: translateX(100%);
-        }
-        #details-page.active {
-            transform: translateX(0);
-        }
     </style>
 </head>
-<body class="overflow-hidden"> <div id="welcome-overlay">
-        <h1 class="welcome-text">Hello Raveena Gunawardana,</h1>
-        <p class="welcome-subtext">Welcome to Our EC Movie Downloading Web Site</p>
-        <div class="loader-line"></div>
-    </div>
+<body class="overflow-x-hidden">
 
-    <div class="fixed top-0 right-0 z-40 flex items-center space-x-6 px-8 py-6 bg-gradient-to-l from-[#0b0214] to-transparent">
-        <div class="flex items-center space-x-5 border-r border-purple-900 pr-6">
+    <div class="fixed top-0 right-0 z-50 flex items-center space-x-6 px-8 py-6 bg-gradient-to-l from-[#0f171e] to-transparent">
+        <div class="flex items-center space-x-5 border-r border-gray-700 pr-6">
             <a href="#" class="sidebar-icon"><i class="fa-brands fa-instagram text-xl"></i></a>
             <a href="#" class="sidebar-icon"><i class="fa-brands fa-facebook text-xl"></i></a>
             <a href="#" class="sidebar-icon"><i class="fa-brands fa-youtube text-xl"></i></a>
         </div>
         <div class="flex items-center space-x-3 cursor-pointer group">
-            <span class="text-sm font-bold text-purple-300 group-hover:text-white transition">My Account</span>
-            <i class="fa-solid fa-user-circle text-2xl text-purple-500"></i>
+            <span class="text-sm font-bold text-gray-400 group-hover:text-white transition">My Account</span>
+            <i class="fa-solid fa-user-circle text-2xl text-blue-400"></i>
         </div>
     </div>
 
-    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0b0214] z-50 border-r border-purple-950">
-        <div class="text-purple-500 text-2xl font-bold italic tracking-tighter mb-12">EC</div>
+    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0f171e] z-50 border-r border-gray-800">
+        <div class="text-blue-400 text-2xl font-bold italic tracking-tighter mb-12">EC</div>
+        
         <div class="flex flex-col items-center space-y-10 w-full">
             <div class="nav-item flex flex-col items-center w-full relative">
                 <i class="fa-solid fa-house text-[#808080] hover:text-white transition-all active-nav pl-2 text-xl"></i>
@@ -163,191 +94,108 @@
         </div>
     </nav>
 
-    <div id="home-content">
-        <section class="relative h-[90vh] ml-20 overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg" alt="Hero Background" class="w-full h-full object-cover">
-                <div class="hero-gradient absolute inset-0"></div>
-                <div class="bottom-vignette absolute inset-0"></div>
+    <section class="relative h-[90vh] ml-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg" alt="Hero Background" class="w-full h-full object-cover">
+            <div class="hero-gradient absolute inset-0"></div>
+            <div class="bottom-vignette absolute inset-0"></div>
+        </div>
+
+        <div class="relative z-20 flex flex-col justify-center h-full px-16 max-w-3xl space-y-4">
+            <div class="flex items-center space-x-2 text-blue-400 font-bold uppercase text-xs tracking-widest">
+                <i class="fa-solid fa-star"></i> <span>Premium Feature</span>
             </div>
-
-            <div class="relative z-20 flex flex-col justify-center h-full px-16 max-w-3xl space-y-4">
-                <div class="flex items-center space-x-2 text-purple-400 font-bold uppercase text-xs tracking-widest">
-                    <i class="fa-solid fa-star"></i> <span>Premium Feature</span>
-                </div>
-            <style>
-                .bloodhound-font {
-                    font-family: 'Archivo Black', sans-serif;
-                    font-style: italic; 
-                    background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), #ffffff;
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
-                    letter-spacing: -0.05em;
-                }
-            </style>
-
+            
             <div class="py-2">
-                <h1 class="bloodhound-font text-7xl font-black tracking-tighter leading-[0.75] uppercase">
-                    Bloodhounds<br><span class="text-5xl tracking-normal text-purple-100">Season 2</span>
+                <h1 class="text-7xl font-black tracking-tighter leading-none uppercase drop-shadow-2xl">
+                    Bloodhound<br>Season 2
                 </h1>
             </div>
-                    
-            <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
-                <span class="text-white">⭐ 6.7</span>
-                <span>2026</span>
-                <span>2h 15m</span>
-                <span class="border border-purple-800 px-1 rounded text-[10px]">EP-7</span>
-                <span class="text-purple-400 font-medium">Sci-Fi • Adventure • Action • Crime</span>
-            </div>
-                
-                <p class="text-lg text-gray-300 leading-relaxed font-medium">Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the feared kingpin of an underground gambling ring. When Baek-jeong tries to force Gun-woo into illegal fighting, the duo teams up to dismantle his criminal empire and wipe out the ring for good.</p>
-                <div class="pt-4 flex space-x-4">
-                    <button onclick="openDetails()" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-purple-100 transition flex items-center">
-                        <i class="fa-solid fa-play mr-2 text-purple-600"></i> Play Now
-		   </button>
-                   <button class="bg-gray-500/30 backdrop-blur-md text-white px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">
-                    Details
-               	   </button>
-                </div>
-            </div>
-        </section>
-
-        <main class="relative z-30 ml-20 mt-4 px-16 pb-20">
-            <h3 class="text-2xl font-bold mb-6">Top 10 in Movies</h3>
-            <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
-                <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails()">
-                    <span class="top-10-number">1</span>
-                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
-                        <img src="https://static.digit.in/Netflix-Bloodhound-season-2.png" class="w-full h-full object-cover" alt="Bloodhounds">
-                    </div>
-                </div>
-                <div class="flex items-center flex-shrink-0 group cursor-pointer">
-                    <span class="top-10-number">2</span>
-                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
-                        <img src="https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?base_image_bucket_name=image_manager&base_image=6c088450-1ef4-41fa-b35a-c4021e5d309d&region=US&format=webp&size=952x536" class="w-full h-full object-cover" alt="Film 2">
-                    </div>
-                </div>
-                <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails()">
-                    <span class="top-10-number">3</span>
-                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
-                        <img src="https://static.digit.in/Netflix-Bloodhound-season-2.png" class="w-full h-full object-cover" alt="Bloodhounds">
-                    </div>
-                </div>
-                <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails()">
-                    <span class="top-10-number">4</span>
-                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
-                        <img src="https://static.digit.in/Netflix-Bloodhound-season-2.png" class="w-full h-full object-cover" alt="Bloodhounds">
-                    </div>
-                </div>
-                <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails()">
-                    <span class="top-10-number">5</span>
-                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
-                        <img src="https://static.digit.in/Netflix-Bloodhound-season-2.png" class="w-full h-full object-cover" alt="Bloodhounds">
-                    </div>
-                </div>
-                <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails()">
-                    <span class="top-10-number">6</span>
-                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
-                        <img src="https://static.digit.in/Netflix-Bloodhound-season-2.png" class="w-full h-full object-cover" alt="Bloodhounds">
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div id="details-page" class="fixed inset-0 z-[100] bg-[#0b0214] hidden overflow-y-auto">
-        <div class="absolute top-8 left-28 z-[110]">
-            <button onclick="closeDetails()" class="flex items-center space-x-3 text-purple-400 hover:text-white transition group">
-                <i class="fa-solid fa-circle-chevron-left text-3xl"></i>
-                <span class="font-bold uppercase tracking-widest text-sm">Back To Home Page</span>
-            </button>
-        </div>
-
-        <div class="h-[50vh] relative overflow-hidden">
-            <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full h-full object-cover opacity-30 blur-md scale-110">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0214] to-transparent"></div>
-        </div>
-
-        <div class="max-w-6xl mx-auto px-12 -mt-40 relative z-10 pb-20">
-            <div class="flex flex-col md:flex-row gap-12">
-                <div class="w-full md:w-80 flex-shrink-0">
-                    <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full rounded-2xl shadow-2xl border border-purple-900" alt="Poster">
-                </div>
-
-                <div class="flex-grow space-y-6">
-                    <div class="flex items-center space-x-3 text-purple-400 font-bold uppercase text-xs tracking-widest">
-                        <span>Netflix Series</span>
-                        <span class="text-purple-900">•</span>
-                        <span>Season 02 (Complete)</span>
-                    </div>
-                    
-                    <h1 class="text-6xl font-black tracking-tighter">Bloodhounds (2026)</h1>
-                    
-                    <div class="flex items-center flex-wrap gap-6 text-gray-400 font-medium">
-                        <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> 8.3 IMDb</span>
-                        <span>60 votes</span>
-                        <span><i class="fa-solid fa-eye mr-2 text-purple-500"></i>37,920 views</span>
-                        <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs">2026</span>
-                    </div>
-
-                    <p class="text-xl text-purple-400 font-medium">Action & Adventure, Crime, Drama, Korea</p>
-                    
-                    <div class="bg-purple-950/20 p-6 rounded-xl border border-purple-900/50 space-y-2">
-                        <h4 class="text-purple-500 font-bold uppercase text-xs tracking-widest">Episode Info</h4>
-                        <p class="text-gray-200">Episode 01-07 — All episodes available for high-speed download.<br>Kim Gun-Woo (Woo Do-Hwan) and Hong Woo-Jin (Lee Sang-Yi) are back in the sport of boxing. Kim Gun-Woo is a promising boxer and dreams of becoming a champion. Im Baek-Jeong (Rain) appears in front of Kim Gun-Woo. Im Baek-Jeong is a powerful man and feared. He runs an underground gambling operation centered around boxing. Im Baek-Jeong tries to lure Kim Gun-Woo into his underground fighting world and doesn't hesitate to use any means necessary. Against Im Baek-Jeong, Kim Gun-Woo and Hong Woo-Jin decide to wipeout the illegal fighting ring.</p>
-                    </div>
-
-                    <div class="space-y-4 pt-4">
-                        <h3 class="text-2xl font-bold">Secure Downloads</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition font-bold group border border-purple-900">
-                                <span>Download 480p</span>
-                                <span class="text-xs opacity-60">350MB <i class="fa-solid fa-download ml-2"></i></span>
-                            </a>
-                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition font-bold group border border-purple-900">
-                                <span>Download 720p</span>
-                                <span class="text-xs opacity-60">650MB <i class="fa-solid fa-download ml-2"></i></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // WELCOME OVERLAY LOGIC
-        window.addEventListener('DOMContentLoaded', () => {
-            const overlay = document.getElementById('welcome-overlay');
             
-            // Hide overlay after 3.5 seconds
-            setTimeout(() => {
-                overlay.style.opacity = '0';
-                overlay.style.visibility = 'hidden';
-                document.body.classList.remove('overflow-hidden');
-                document.body.classList.add('overflow-x-hidden');
-            }, 3500);
-        });
+            <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
+                <span class="text-white">⭐ 4.9</span>
+                <span>2024</span>
+                <span>2h 15m</span>
+                <span class="border border-gray-600 px-1 rounded text-[10px]">PG-13</span>
+                <span class="text-blue-400 font-medium">Sci-Fi • Adventure • Mystery</span>
+            </div>
 
-        const detailsPage = document.getElementById('details-page');
-        const homeContent = document.getElementById('home-content');
+            <p class="text-lg text-gray-300 leading-relaxed font-medium drop-shadow-md">
+                Embark on a visual journey through the cosmos. Eclipse Cinema brings you the latest in high-definition cinematography and storytelling from across the globe.
+            </p>
+            
+            <div class="pt-4 flex space-x-4">
+                <button class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition flex items-center">
+                    <i class="fa-solid fa-play mr-2"></i> Play Now
+                </button>
+                <button class="bg-gray-500/30 backdrop-blur-md text-white px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">
+                    Details
+                </button>
+            </div>
+        </div>
+    </section>
 
-        function openDetails() {
-            detailsPage.classList.remove('hidden');
-            setTimeout(() => {
-                detailsPage.classList.add('active');
-            }, 10);
-            document.body.style.overflow = 'hidden';
-        }
+    <main class="relative z-30 ml-20 mt-4 px-16 pb-20">
+        <h3 class="text-2xl font-bold mb-6 flex items-center">
+            Top 10 in Movies <i class="fa-solid fa-chevron-right text-sm ml-3 text-gray-600"></i>
+        </h3>
+        
+        <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">1</span>
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Film 1">
+                </div>
+            </div>
 
-        function closeDetails() {
-            detailsPage.classList.remove('active');
-            setTimeout(() => {
-                detailsPage.classList.add('hidden');
-            }, 500);
-            document.body.style.overflow = 'auto';
-        }
-    </script>
+<div id="details-page" class="fixed inset-0 z-[100] bg-[#0f171e] hidden overflow-y-auto">
+    <button onclick="closeDetails()" class="fixed top-8 left-28 z-[110] bg-blue-500 text-white px-6 py-2 rounded-full font-bold shadow-lg">
+        <i class="fa-solid fa-arrow-left mr-2"></i> Back
+    </button>
+
+    <div class="max-w-6xl mx-auto px-8 py-24 flex flex-col md:flex-row gap-12">
+        <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full md:w-1/3 rounded-2xl shadow-2xl">
+        
+        <div class="space-y-6">
+            <h1 class="text-5xl font-black">Bloodhounds (2023)</h1>
+            <div class="flex gap-4 text-blue-400 font-bold">
+                <span>IMDb: 8.3</span><span>60 votes</span><span>2023</span>
+            </div>
+            <p class="text-gray-400 text-lg">Action & Adventure, Crime, Drama, Korea</p>
+            
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <p><strong>Season 01 (Complete)</strong>: Episode 01-08</p>
+            </div>
+
+            <div class="space-y-3">
+                <a href="https://cinesubz.lk/.../ofadyn5zuh/" class="block bg-blue-600 p-4 rounded-lg text-center font-bold">Download 480p (350MB)</a>
+                <a href="https://cinesubz.lk/.../m3fg7po3an/" class="block bg-gray-800 p-4 rounded-lg text-center font-bold">Download 720p (650MB)</a>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">2</span>
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
+                    <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Film 2">
+                </div>
+             </div>
+
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">3</span>
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
+                    <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Film 3">
+                </div>
+            </div>
+
+            <div class="flex items-center flex-shrink-0 group cursor-pointer">
+                <span class="top-10-number">4</span>
+                <div class="w-72 h-40 bg-gray-800 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-blue-400">
+                    <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Film 4">
+                </div>
+            </div>
+        </div>
+    </main>
+
 </body>
 </html>
