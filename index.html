@@ -1,53 +1,266 @@
-<style>
-    /* Darker Deep Purple Background */
-    body { background-color: #0b0214; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    
-    /* Welcome Overlay with Purple Gradient */
-    #welcome-overlay {
-        position: fixed;
-        inset: 0;
-        background-color: #0b0214;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.8s ease-in-out, visibility 0.8s;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipse Cinema | Purple Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <style>
+        /* Deep Purple Theme Overrides */
+        body { 
+            background-color: #0b0214; 
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        /* Welcome Overlay Styles */
+        #welcome-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: #0b0214;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
+        }
 
-    .welcome-text {
-        font-size: 2.5rem;
-        font-weight: 800;
-        text-align: center;
-        /* Updated to Purple Gradient */
-        background: linear-gradient(to right, #d8b4fe, #a855f7);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 1s forwards ease-out;
-    }
+        .welcome-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(to right, #d8b4fe, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards ease-out;
+        }
 
-    .loader-line::after {
-        content: '';
-        position: absolute;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: #a855f7; /* Purple Loader */
-        animation: loading 1.5s infinite;
-    }
+        .welcome-subtext {
+            color: #a78bfa;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.5s ease-out;
+        }
 
-    /* Side Nav & Hero Gradients */
-    .sidebar-icon { color: #a855f7; transition: all 0.3s; cursor: pointer; }
-    .active-nav { color: #ffffff; border-left: 3px solid #a855f7; }
-    .hero-gradient { background: linear-gradient(to right, #0b0214 25%, rgba(11, 2, 20, 0.4) 60%, transparent 100%); }
-    .bottom-vignette { background: linear-gradient(to top, #0b0214 15%, transparent 100%); }
-    
-    .nav-item .nav-tooltip { background: #a855f7; }
-    
-    /* Custom Bloodhound Logo Glow */
-    .bloodhound-font {
-        filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4));
-    }
-</style>
+        .loader-line {
+            width: 150px;
+            height: 2px;
+            background: #2e1065;
+            margin-top: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-line::after {
+            content: '';
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #a855f7;
+            animation: loading 1.8s infinite;
+        }
+
+        @keyframes loading { 100% { left: 100%; } }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* UI Elements */
+        .hero-gradient {
+            background: linear-gradient(to right, #0b0214 25%, rgba(11, 2, 20, 0.4) 60%, transparent 100%);
+        }
+        .bottom-vignette {
+            background: linear-gradient(to top, #0b0214 15%, transparent 100%);
+        }
+
+        .top-10-number {
+            font-size: 10rem; line-height: 1; font-weight: 900; 
+            -webkit-text-stroke: 2px #4c1d95; color: transparent;
+            margin-right: -45px; z-index: 10; font-family: Arial, sans-serif;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .sidebar-icon { color: #a855f7; transition: all 0.3s; cursor: pointer; }
+        .sidebar-icon:hover { color: #ffffff; transform: translateY(-2px); }
+        .active-nav { color: #ffffff; border-left: 3px solid #a855f7; }
+        
+        .nav-item .nav-tooltip {
+            position: absolute; left: 70px; background: #a855f7; color: white;
+            padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;
+            opacity: 0; pointer-events: none; transition: opacity 0.2s; white-space: nowrap;
+        }
+        .nav-item:hover .nav-tooltip { opacity: 1; }
+
+        #details-page {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(100%);
+        }
+        #details-page.active { transform: translateX(0); }
+
+        .bloodhound-font {
+            font-family: 'Archivo Black', sans-serif;
+            font-style: italic;
+            background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), #ffffff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.5));
+            letter-spacing: -0.05em;
+        }
+    </style>
+</head>
+<body class="overflow-hidden"> <div id="welcome-overlay">
+        <h1 class="welcome-text">Hello Raveena,</h1>
+        <p class="welcome-subtext">Welcome to Our EC Movie Downloading Web Site</p>
+        <div class="loader-line"></div>
+    </div>
+
+    <div class="fixed top-0 right-0 z-40 flex items-center space-x-6 px-8 py-6 bg-gradient-to-l from-[#0b0214] to-transparent">
+        <div class="flex items-center space-x-5 border-r border-purple-900 pr-6">
+            <a href="#" class="sidebar-icon"><i class="fa-brands fa-instagram text-xl"></i></a>
+            <a href="#" class="sidebar-icon"><i class="fa-brands fa-facebook text-xl"></i></a>
+            <a href="#" class="sidebar-icon"><i class="fa-brands fa-youtube text-xl"></i></a>
+        </div>
+        <div class="flex items-center space-x-3 cursor-pointer group">
+            <span class="text-sm font-bold text-purple-300 group-hover:text-white transition">My Account</span>
+            <i class="fa-solid fa-user-circle text-2xl text-purple-500"></i>
+        </div>
+    </div>
+
+    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0b0214] z-50 border-r border-purple-950">
+        <div class="text-purple-500 text-2xl font-bold italic tracking-tighter mb-12">EC</div>
+        <div class="flex flex-col items-center space-y-10 w-full">
+            <div class="nav-item flex flex-col items-center w-full relative">
+                <i class="fa-solid fa-house text-purple-300 hover:text-white transition-all active-nav pl-2 text-xl"></i>
+                <span class="nav-tooltip">Home</span>
+            </div>
+            <div class="nav-item flex flex-col items-center w-full relative">
+                <i class="fa-solid fa-film text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
+                <span class="nav-tooltip">Movies</span>
+            </div>
+            <div class="nav-item flex flex-col items-center w-full relative">
+                <i class="fa-solid fa-magnifying-glass text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
+                <span class="nav-tooltip">Search</span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home-content">
+        <section class="relative h-[90vh] ml-20 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg" alt="Hero Background" class="w-full h-full object-cover">
+                <div class="hero-gradient absolute inset-0"></div>
+                <div class="bottom-vignette absolute inset-0"></div>
+            </div>
+
+            <div class="relative z-20 flex flex-col justify-center h-full px-16 max-w-3xl space-y-4">
+                <div class="flex items-center space-x-2 text-purple-400 font-bold uppercase text-xs tracking-widest">
+                    <i class="fa-solid fa-star"></i> <span>Premium Feature</span>
+                </div>
+
+                <div class="py-2">
+                    <h1 class="bloodhound-font text-7xl font-black tracking-tighter leading-[0.75] uppercase">
+                        Bloodhounds<br><span class="text-5xl tracking-normal">Season 2</span>
+                    </h1>
+                </div>
+                
+                <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
+                    <span class="text-white">⭐ 6.7</span>
+                    <span>2026</span>
+                    <span class="text-purple-400 font-medium">Sci-Fi • Adventure • Action</span>
+                </div>
+                
+                <p class="text-lg text-gray-300 leading-relaxed font-medium">Kim Gun-Woo and Hong Woo-Jin are back in the sport of boxing. They decide to wipe out an illegal fighting ring run by a powerful man named Rain.</p>
+                
+                <div class="pt-4 flex space-x-4">
+                    <button onclick="openDetails()" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-purple-200 transition flex items-center">
+                        <i class="fa-solid fa-play mr-2"></i> Play Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <main class="relative z-30 ml-20 mt-4 px-16 pb-20">
+            <h3 class="text-2xl font-bold mb-6 text-purple-100">Top 10 in Movies</h3>
+            <div class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
+                <div class="flex items-center flex-shrink-0 group cursor-pointer" onclick="openDetails()">
+                    <span class="top-10-number">1</span>
+                    <div class="w-72 h-40 bg-gray-900 rounded-md overflow-hidden shadow-2xl transform group-hover:scale-105 transition duration-300 border-2 border-transparent group-hover:border-purple-500">
+                        <img src="https://static.digit.in/Netflix-Bloodhound-season-2.png" class="w-full h-full object-cover" alt="Bloodhounds">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="details-page" class="fixed inset-0 z-[100] bg-[#0b0214] hidden overflow-y-auto">
+        <div class="absolute top-8 left-28 z-[110]">
+            <button onclick="closeDetails()" class="flex items-center space-x-3 text-purple-400 hover:text-white transition group">
+                <i class="fa-solid fa-circle-chevron-left text-3xl"></i>
+                <span class="font-bold uppercase tracking-widest text-sm">Back To Home</span>
+            </button>
+        </div>
+
+        <div class="h-[50vh] relative overflow-hidden">
+            <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full h-full object-cover opacity-20 blur-lg scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0214] to-transparent"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-12 -mt-40 relative z-10 pb-20">
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="w-full md:w-80 flex-shrink-0">
+                    <img src="https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" class="w-full rounded-2xl shadow-2xl border border-purple-900" alt="Poster">
+                </div>
+                <div class="flex-grow space-y-6">
+                    <h1 class="text-6xl font-black tracking-tighter">Bloodhounds (2026)</h1>
+                    <div class="flex items-center gap-6 text-gray-400">
+                        <span class="text-yellow-500 font-bold">⭐ 8.3 IMDb</span>
+                        <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs uppercase">Season 2</span>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 pt-6">
+                        <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition font-bold border border-purple-900">
+                            <span>Download 1080p</span>
+                            <span class="text-xs opacity-60">1.3GB <i class="fa-solid fa-download ml-2"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Welcome Overlay Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('welcome-overlay');
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                overlay.style.visibility = 'hidden';
+                document.body.style.overflow = 'auto'; // Enable scrolling
+            }, 3000);
+        });
+
+        // Details Page Logic
+        function openDetails() {
+            const page = document.getElementById('details-page');
+            page.classList.remove('hidden');
+            setTimeout(() => page.classList.add('active'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetails() {
+            const page = document.getElementById('details-page');
+            page.classList.remove('active');
+            setTimeout(() => {
+                page.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 600);
+        }
+    </script>
+</body>
+</html>
