@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #0b0214; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+        body { background-color: #0b0214; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
         /* --- WELCOME OVERLAY STYLES --- */
         #welcome-overlay {
@@ -68,64 +68,11 @@
         @keyframes loading { 100% { left: 100%; } }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- HERO SECTION STYLES --- */
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            background: url('https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg') center/cover no-repeat;
-            margin-left: 80px;
-            transition: transform 0.8s ease-in-out, opacity 0.6s ease-in-out;
-            z-index: 100;
+        .hero-gradient {
+            background: linear-gradient(to right, #0b0214 25%, rgba(11, 2, 20, 0.4) 60%, transparent 100%);
         }
-        .hero-section .overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, #0b0214 30%, rgba(11, 2, 20, 0.4) 70%, transparent 100%);
-            display: flex;
-            align-items: center;
-            padding-left: 60px;
-        }
-        .hero-welcome-content h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
-        .hero-welcome-content p { font-size: 1.5rem; color: #d1d5db; margin-bottom: 30px; }
-        .cta-group { display: flex; gap: 10px; max-width: 600px; }
-        .email-input { 
-            flex-grow: 1; 
-            padding: 16px 20px; 
-            background: rgba(0,0,0,0.5); 
-            border: 1px solid #4c1d95; 
-            border-radius: 4px; 
-            color: white; 
-            outline: none;
-        }
-        .btn-main { 
-            background: #a855f7; 
-            color: white; 
-            padding: 16px 32px; 
-            font-size: 1.25rem; 
-            font-weight: bold; 
-            border-radius: 4px; 
-            transition: 0.3s;
-        }
-        .btn-main:hover { background: #9333ea; }
-
-        /* --- HOME PAGE FEATURE BANNER --- */
-        .banner-feature {
-            height: 85vh;
-            background: linear-gradient(to right, #0b0214 20%, transparent 100%), 
-                        url('https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            padding-left: 100px;
-            position: relative;
-        }
-        .featured-title {
-            font-size: 5rem;
-            font-weight: 900;
-            font-style: italic;
-            text-transform: uppercase;
-            line-height: 0.9;
-            margin-top: 10px;
-            margin-bottom: 20px;
+        .bottom-vignette {
+            background: linear-gradient(to top, #0b0214 15%, transparent 100%);
         }
 
         .top-10-number {
@@ -134,7 +81,7 @@
             font-weight: 900; 
             -webkit-text-stroke: 2px #4c1d95; 
             color: transparent;
-            margin-right: -35px; 
+            margin-right: -45px; 
             z-index: 10;
             font-family: Arial, sans-serif;
         }
@@ -173,12 +120,12 @@
 </head>
 <body class="overflow-hidden"> 
     <div id="welcome-overlay">
-        <h1 class="welcome-text">Welcome Raveena Gunawardana,</h1>
-        <p class="welcome-subtext">Initializing Your Cinematic Experience</p>
+        <h1 class="welcome-text">Hello Raveena Gunawardana,</h1>
+        <p class="welcome-subtext">Welcome to Our EC Movie Downloading Web Site</p>
         <div class="loader-line"></div>
     </div>
 
-    <div class="fixed top-0 right-0 z-[150] flex items-center space-x-6 px-8 py-6 bg-gradient-to-l from-[#0b0214] to-transparent">
+    <div class="fixed top-0 right-0 z-40 flex items-center space-x-6 px-8 py-6 bg-gradient-to-l from-[#0b0214] to-transparent">
         <div class="flex items-center space-x-5 border-r border-purple-900 pr-6">
             <a href="#" class="sidebar-icon"><i class="fa-brands fa-instagram text-xl"></i></a>
             <a href="#" class="sidebar-icon"><i class="fa-brands fa-facebook text-xl"></i></a>
@@ -190,11 +137,11 @@
         </div>
     </div>
 
-    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0b0214] z-[200] border-r border-purple-950">
+    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0b0214] z-50 border-r border-purple-950">
         <div class="text-purple-500 text-2xl font-bold italic tracking-tighter mb-12">EC</div>
         <div class="flex flex-col items-center space-y-10 w-full">
             <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-house text-white active-nav pl-2 text-xl"></i>
+                <i class="fa-solid fa-house text-[#808080] hover:text-white transition-all active-nav pl-2 text-xl"></i>
                 <span class="nav-tooltip">Home</span>
             </div>
             <div class="nav-item flex flex-col items-center w-full relative">
@@ -216,99 +163,111 @@
         </div>
     </nav>
 
-    <div id="app-container">
-        <section class="hero-section" id="initial-hero">
-            <div class="overlay">
-                <div class="hero-welcome-content">
-                    <h1>Unlimited Movies & Series.</h1>
-                    <p>Download your favorites in 4K Ultra-HD. Watch anywhere.</p>
-                    <div class="cta-group">
-                        <input type="email" placeholder="Email address" class="email-input">
-                        <button class="btn-main" onclick="goToHome()">Get Started &rsaquo;</button>
-                    </div>
+    <div id="home-content">
+        <section class="relative h-[90vh] ml-20 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg" alt="Hero Background" class="w-full h-full object-cover">
+                <div class="hero-gradient absolute inset-0"></div>
+                <div class="bottom-vignette absolute inset-0"></div>
+            </div>
+
+            <div class="relative z-20 flex flex-col justify-center h-full px-16 max-w-3xl space-y-4">
+                <div class="flex items-center space-x-2 text-purple-400 font-bold uppercase text-xs tracking-widest">
+                    <i class="fa-solid fa-star"></i> <span>Premium Feature</span>
+                </div>
+                <style>
+                    .bloodhound-font {
+                        font-family: 'Archivo Black', sans-serif;
+                        font-style: italic; 
+                        background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), #ffffff;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
+                        letter-spacing: -0.05em;
+                    }
+                </style>
+                <div class="py-2">
+                    <h1 class="bloodhound-font text-7xl font-black tracking-tighter leading-[0.75] uppercase">
+                        Bloodhounds<br><span class="text-5xl tracking-normal text-purple-100">Season 2</span>
+                    </h1>
+                </div>
+                <div class="flex items-center space-x-4 text-sm text-gray-400 font-bold">
+                    <span class="text-white">⭐ 8.3</span>
+                    <span>2026</span>
+                    <span>Season 2</span>
+                    <span class="border border-purple-800 px-1 rounded text-[10px]">HD</span>
+                    <span class="text-purple-400 font-medium">Action • Crime • Drama</span>
+                </div>
+                <p class="text-lg text-gray-300 leading-relaxed font-medium">Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by a feared underground kingpin.</p>
+                <div class="pt-4 flex space-x-4">
+                    <button onclick="openDetails(0)" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-purple-100 transition flex items-center">
+                        <i class="fa-solid fa-play mr-2 text-purple-600"></i> Play Now
+                    </button>
+                    <button onclick="openDetails(0)" class="bg-gray-500/30 backdrop-blur-md text-white px-8 py-3 rounded font-bold hover:bg-gray-500/50 transition">
+                        Details
+                    </button>
                 </div>
             </div>
         </section>
 
-        <div id="home-page" class="hidden ml-20">
-            <section class="banner-feature">
-                <div class="max-w-3xl">
-                    <div class="flex items-center space-x-2 text-purple-400 font-bold text-xs tracking-widest uppercase">
-                        <i class="fa-solid fa-star text-[10px]"></i>
-                        <span>Premium Feature</span>
-                    </div>
-                    <h1 class="featured-title">Bloodhounds<br>Season 2</h1>
-                    <div class="flex items-center space-x-4 mb-6 text-sm font-semibold">
-                        <span class="flex items-center text-yellow-500"><i class="fa-solid fa-star mr-1 text-xs"></i> 8.3</span>
-                        <span class="text-gray-400">2026</span>
-                        <span class="text-gray-400">Season 2</span>
-                        <span class="bg-gray-800 text-purple-400 px-1.5 py-0.5 rounded text-[10px] border border-purple-900">HD</span>
-                        <span class="text-purple-400">Action • Crime • Drama</span>
-                    </div>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-8 max-w-xl">
-                        Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by a feared underground kingpin.
-                    </p>
-                    <div class="flex space-x-4">
-                        <button class="bg-white text-black px-10 py-3 rounded font-bold flex items-center hover:bg-gray-200 transition">
-                            <i class="fa-solid fa-play mr-3"></i> Play Now
-                        </button>
-                        <button class="bg-white/10 backdrop-blur-md text-white px-10 py-3 rounded font-bold hover:bg-white/20 transition border border-white/10" onclick="openDetails(0)">
-                            Details
-                        </button>
-                    </div>
+        <main class="relative z-30 ml-20 mt-4 px-16 pb-20">
+            <h3 class="text-2xl font-bold mb-6">Top 10 in Movies</h3>
+            <div id="movie-grid" class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
                 </div>
-            </section>
-
-            <main class="relative z-30 px-16 pb-20 -mt-10">
-                <h3 class="text-2xl font-bold mb-8">Top 10 in Movies</h3>
-                <div id="movie-grid" class="flex space-x-12 overflow-x-auto no-scrollbar pb-10 items-center">
-                    </div>
-            </main>
-        </div>
+        </main>
     </div>
 
-    <div id="details-page" class="fixed inset-0 z-[300] bg-[#0b0214] hidden overflow-y-auto">
-        <div class="absolute top-8 left-28 z-[310]">
+    <div id="details-page" class="fixed inset-0 z-[100] bg-[#0b0214] hidden overflow-y-auto">
+        <div class="absolute top-8 left-28 z-[110]">
             <button onclick="closeDetails()" class="flex items-center space-x-3 text-purple-400 hover:text-white transition group">
                 <i class="fa-solid fa-circle-chevron-left text-3xl"></i>
                 <span class="font-bold uppercase tracking-widest text-sm">Back To Home Page</span>
             </button>
         </div>
+
         <div class="h-[50vh] relative overflow-hidden">
             <img id="detail-bg" src="" class="w-full h-full object-cover opacity-30 blur-md scale-110">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0b0214] to-transparent"></div>
         </div>
+
         <div class="max-w-6xl mx-auto px-12 -mt-40 relative z-10 pb-20">
             <div class="flex flex-col md:flex-row gap-12">
                 <div class="w-full md:w-80 flex-shrink-0">
-                    <img id="detail-poster" src="" class="w-full rounded-2xl shadow-2xl border border-purple-900 shadow-purple-900/20">
+                    <img id="detail-poster" src="" class="w-full rounded-2xl shadow-2xl border border-purple-900" alt="Poster">
                 </div>
+
                 <div class="flex-grow space-y-6">
                     <div class="flex items-center space-x-3 text-purple-400 font-bold uppercase text-xs tracking-widest">
-                        <span id="detail-tag"></span>
+                        <span id="detail-tag">Netflix Series</span>
                         <span class="text-purple-900">•</span>
                         <span>Official Release</span>
                     </div>
+                    
                     <h1 id="detail-title" class="text-6xl font-black tracking-tighter"></h1>
+                    
                     <div class="flex items-center flex-wrap gap-6 text-gray-400 font-medium">
                         <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> <span id="detail-rating"></span> IMDb</span>
                         <span><i class="fa-solid fa-eye mr-2 text-purple-500"></i><span id="detail-views"></span> views</span>
                         <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs" id="detail-year"></span>
                     </div>
+
                     <p id="detail-genre" class="text-xl text-purple-400 font-medium"></p>
-                    <div class="bg-purple-950/20 p-6 rounded-xl border border-purple-900/50">
+                    
+                    <div class="bg-purple-950/20 p-6 rounded-xl border border-purple-900/50 space-y-2">
+                        <h4 class="text-purple-500 font-bold uppercase text-xs tracking-widest">Description</h4>
                         <p id="detail-desc" class="text-gray-200"></p>
                     </div>
+
                     <div class="space-y-4 pt-4">
                         <h3 class="text-2xl font-bold">Secure Downloads</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition border border-purple-900">
+                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition font-bold group border border-purple-900">
+                                <span>Download 480p</span>
+                                <span class="text-xs opacity-60">350MB <i class="fa-solid fa-download ml-2"></i></span>
+                            </a>
+                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition font-bold group border border-purple-900">
                                 <span>Download 720p</span>
                                 <span class="text-xs opacity-60">650MB <i class="fa-solid fa-download ml-2"></i></span>
-                            </a>
-                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition border border-purple-900">
-                                <span>Download 1080p</span>
-                                <span class="text-xs opacity-60">1.2GB <i class="fa-solid fa-download ml-2"></i></span>
                             </a>
                         </div>
                     </div>
@@ -318,121 +277,111 @@
     </div>
 
     <script>
+        // --- MOVIE DATABASE (10 ENTRIES) ---
         const movieData = [
-            { 
-                title: "Bloodhounds S2", 
-                rating: "8.3", 
-                views: "37,920", 
-                year: "2026", 
-                genre: "Action, Crime, Drama", 
-                desc: "Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by a feared underground kingpin.", 
-                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png", 
-                tag: "Premium Feature" 
+            {
+                title: "Bloodhounds S2",
+                rating: "8.3",
+                views: "37,920",
+                year: "2026",
+                genre: "Action, Crime, Korea",
+                desc: "Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by Im Baek-jeong (Rain), the feared kingpin of an underground gambling ring.",
+                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
+                tag: "Netflix Original"
             },
-            { 
-                title: "The Silent Sea", 
-                rating: "7.9", 
-                views: "22,410", 
-                year: "2026", 
-                genre: "Sci-Fi, Thriller", 
-                desc: "Space explorers try to retrieve samples from an abandoned research facility.", 
-                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg", 
-                tag: "Trending" 
+            {
+                title: "The Silent Sea",
+                rating: "7.9",
+                views: "22,410",
+                year: "2026",
+                genre: "Sci-Fi, Thriller",
+                desc: "During a perilous 24-hour mission on the moon, space explorers try to retrieve samples from an abandoned research facility steeped in classified secrets.",
+                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
+                tag: "Trending"
             },
-            { 
-                title: "Cyber City", 
-                rating: "8.1", 
-                views: "45,000", 
-                year: "2025", 
-                genre: "Action, Cyberpunk", 
-                desc: "A rogue AI engineer creates a virus in Neo-Seoul.", 
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg", 
-                tag: "Recommended" 
+            {
+                title: "Cyber City",
+                rating: "8.1",
+                views: "45,000",
+                year: "2025",
+                genre: "Action, Cyberpunk",
+                desc: "A rogue AI engineer creates a virus that gives citizens telekinetic powers in the neon-lit streets of Neo-Seoul.",
+                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
+                tag: "Recommended"
             },
-            { 
-                title: "Squid Game 2", 
-                rating: "9.0", 
-                views: "1.2M", 
-                year: "2025", 
-                genre: "Thriller, Drama", 
-                desc: "Gi-hun starts a chase with a motive after the deadly game.", 
-                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536", 
-                tag: "Must Watch" 
+            {
+                title: "Squid Game 2",
+                rating: "9.0",
+                views: "1.2M",
+                year: "2025",
+                genre: "Thriller, Drama",
+                desc: "Gi-hun abandons his plans to go to the US and starts a chase with a motive after the deadly game that he won.",
+                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
+                tag: "Must Watch"
             },
-            { 
-                title: "The Witcher", 
-                rating: "8.2", 
-                views: "89,000", 
-                year: "2024", 
-                genre: "Fantasy, Adventure", 
-                desc: "Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny.", 
-                img: "https://static1.srcdn.com/wordpress/wp-content/uploads/2023/06/the-witcher-season-3-poster.jpg", 
-                tag: "Bestseller" 
+            {
+                title: "Phantom Thief",
+                rating: "7.5",
+                views: "18,200",
+                year: "2026",
+                genre: "Mystery, Action",
+                desc: "A master thief is forced into one last heist to save his family, but the target is the world's most secure digital vault.",
+                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
+                tag: "New Arrival"
             },
-            { 
-                title: "Iron Heart", 
-                rating: "8.8", 
-                views: "55,100", 
-                year: "2026", 
-                genre: "Adventure, Fantasy", 
-                desc: "A young girl discovers she is the last descendant of dragon riders.", 
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg", 
-                tag: "Blockbuster" 
+            {
+                title: "Iron Heart",
+                rating: "8.8",
+                views: "55,100",
+                year: "2026",
+                genre: "Adventure, Fantasy",
+                desc: "A young girl discovers she is the last descendant of a race of dragon riders and must find the hidden egg.",
+                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
+                tag: "Blockbuster"
             },
-            { 
-                title: "Night Walker", 
-                rating: "6.9", 
-                views: "12,300", 
-                year: "2026", 
-                genre: "Horror, Mystery", 
-                desc: "A town is plagued by a mysterious entity at 3:00 AM.", 
-                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg", 
-                tag: "Late Night" 
+            {
+                title: "Night Walker",
+                rating: "6.9",
+                views: "12,300",
+                year: "2026",
+                genre: "Horror, Mystery",
+                desc: "A town is plagued by a mysterious entity that appears only at 3:00 AM. A group of teenagers tries to solve the legend.",
+                img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg",
+                tag: "Late Night"
             },
-            { 
-                title: "The Outpost", 
-                rating: "7.4", 
-                views: "21,000", 
-                year: "2025", 
-                genre: "War, History", 
-                desc: "True story of survival behind enemy lines.", 
-                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536", 
-                tag: "Historical" 
+            {
+                title: "The Outpost",
+                rating: "7.4",
+                views: "21,000",
+                year: "2025",
+                genre: "War, History",
+                desc: "Based on a true story of survival. A small unit of soldiers is trapped behind enemy lines.",
+                img: "https://img2.hulu.com/user/v3/artwork/e953698c-b733-465d-a364-58c2c156009f?format=webp&size=952x536",
+                tag: "Historical"
             },
-            { 
-                title: "Ocean's Edge", 
-                rating: "8.0", 
-                views: "33,200", 
-                year: "2026", 
-                genre: "Action, Adventure", 
-                desc: "Expedition discovers an ancient city.", 
-                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg", 
-                tag: "Top Rated" 
+            {
+                title: "Ocean's Edge",
+                rating: "8.0",
+                views: "33,200",
+                year: "2026",
+                genre: "Action, Adventure",
+                desc: "An underwater expedition goes wrong when the crew discovers an ancient city that shouldn't exist.",
+                img: "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg",
+                tag: "Top Rated"
             },
-            { 
-                title: "Zenith", 
-                rating: "7.7", 
-                views: "15,800", 
-                year: "2026", 
-                genre: "Sci-Fi, Drama", 
-                desc: "Humanity's last hope rests on a ship traveling to a distant star.", 
-                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png", 
-                tag: "Sci-Fi" 
+            {
+                title: "Zenith",
+                rating: "7.7",
+                views: "15,800",
+                year: "2026",
+                genre: "Sci-Fi, Drama",
+                desc: "Humanity's last hope rests on a ship traveling to a distant star. Tensions rise as the mission's true purpose is revealed.",
+                img: "https://static.digit.in/Netflix-Bloodhound-season-2.png",
+                tag: "Sci-Fi"
             }
         ];
 
-        function goToHome() {
-            const hero = document.getElementById('initial-hero');
-            const home = document.getElementById('home-page');
-            hero.style.transform = "translateY(-100%)";
-            hero.style.opacity = "0";
-            setTimeout(() => {
-                hero.style.display = "none";
-                home.classList.remove('hidden');
-                document.body.style.overflowY = "auto";
-            }, 800);
-        }
-
+        // --- RENDER TOP 10 LIST AUTOMATICALLY ---
         const grid = document.getElementById('movie-grid');
         movieData.forEach((movie, index) => {
             const card = `
@@ -446,39 +395,47 @@
             grid.innerHTML += card;
         });
 
+        // --- WELCOME OVERLAY LOGIC ---
         window.addEventListener('DOMContentLoaded', () => {
             const overlay = document.getElementById('welcome-overlay');
             setTimeout(() => {
                 overlay.style.opacity = '0';
                 overlay.style.visibility = 'hidden';
                 document.body.classList.remove('overflow-hidden');
+                document.body.classList.add('overflow-x-hidden');
             }, 3500);
         });
 
+        // --- DYNAMIC DETAILS PAGE LOGIC ---
         const detailsPage = document.getElementById('details-page');
 
         function openDetails(index) {
             const movie = movieData[index];
-            document.getElementById('detail-title').innerText = movie.title;
+            
+            // Inject Movie Data into Details Page
+            document.getElementById('detail-title').innerText = movie.title + " (" + movie.year + ")";
             document.getElementById('detail-rating').innerText = movie.rating;
             document.getElementById('detail-views').innerText = movie.views;
             document.getElementById('detail-year').innerText = movie.year;
             document.getElementById('detail-genre').innerText = movie.genre;
             document.getElementById('detail-desc').innerText = movie.desc;
-            
-            // Updating images specifically for each movie
             document.getElementById('detail-poster').src = movie.img;
             document.getElementById('detail-bg').src = movie.img;
             document.getElementById('detail-tag').innerText = movie.tag;
-            
+
+            // Show Page with Animation
             detailsPage.classList.remove('hidden');
-            setTimeout(() => detailsPage.classList.add('active'), 10);
+            setTimeout(() => {
+                detailsPage.classList.add('active');
+            }, 10);
             document.body.style.overflow = 'hidden';
         }
 
         function closeDetails() {
             detailsPage.classList.remove('active');
-            setTimeout(() => detailsPage.classList.add('hidden'), 500);
+            setTimeout(() => {
+                detailsPage.classList.add('hidden');
+            }, 500);
             document.body.style.overflow = 'auto';
         }
     </script>
