@@ -6,10 +6,11 @@
     <title>Eclipse Cinema</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body { background-color: #0b0214; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        /* --- WELCOME OVERLAY STYLES --- */
+        /* --- WELCOME OVERLAY --- */
         #welcome-overlay {
             position: fixed;
             inset: 0;
@@ -21,7 +22,6 @@
             justify-content: center;
             transition: opacity 1s ease-in-out, visibility 1s;
         }
-
         .welcome-text {
             font-size: 2.5rem;
             font-weight: 800;
@@ -33,163 +33,108 @@
             transform: translateY(20px);
             animation: fadeInUp 1s forwards ease-out;
         }
-
-        .welcome-subtext {
-            color: #a78bfa;
-            margin-top: 15px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            font-weight: 600;
-            opacity: 0;
-            animation: fadeInUp 1s forwards 0.5s ease-out;
-        }
-
-        .loader-line {
-            width: 200px;
-            height: 2px;
-            background: #2e1065;
-            margin-top: 30px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .loader-line::after {
-            content: '';
-            position: absolute;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: #a855f7;
-            animation: loading 2s infinite ease-in-out;
-        }
-
-        @keyframes loading { 100% { left: 100%; } }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- HERO SECTION STYLES --- */
-        .hero-section {
+        /* --- LANDING HERO --- */
+        .landing-hero {
             position: relative;
             height: 100vh;
             background: url('https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg') center/cover no-repeat;
-            margin-left: 80px;
             transition: transform 0.8s ease-in-out, opacity 0.6s ease-in-out;
-            z-index: 40;
         }
-        .hero-section .overlay {
+        .landing-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, #0b0214 30%, rgba(11, 2, 20, 0.4) 70%, transparent 100%);
+            background: linear-gradient(to right, #0b0214 40%, transparent 100%);
             display: flex;
             align-items: center;
-            padding-left: 60px;
+            padding-left: 10%;
         }
 
-        /* --- HOME FEATURED HERO --- */
+        /* --- UPDATED HOME FEATURED HERO --- */
         .featured-hero {
-            position: relative;
-            height: 100vh;
+            position: relative; /* Add for absolute child */
+            height: 80vh;
+            cursor: pointer; /* Change cursor for background link */
             display: flex;
             align-items: center;
             padding-left: 60px;
         }
-        .featured-hero .gradient-overlay {
+
+        /* Dedicated container for updated background & fade */
+        .hero-background-media {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 60%, #0b0214);
-            z-index: 10;
+            /* Combine gradient fade with updated background image */
+            background: 
+                linear-gradient(to bottom, transparent 60%, #0b0214),
+                url('https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg') center/cover no-repeat;
+            z-index: 1; /* Place behind text content */
         }
 
-        .welcome-content h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
-        .welcome-content p { font-size: 1.5rem; color: #d1d5db; margin-bottom: 30px; }
-        
+        /* --- TOP 10 RANKING NUMBERS --- */
+        .rank-number {
+            font-size: 10rem;
+            line-height: 1;
+            font-weight: 900;
+            -webkit-text-stroke: 2px #4c1d95;
+            color: transparent;
+            margin-right: -40px;
+            z-index: 10;
+            font-family: sans-serif;
+        }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .sidebar-icon { color: #a855f7; transition: all 0.3s; cursor: pointer; }
-        .sidebar-icon:hover { color: #ffffff; transform: translateY(-2px); }
+        .sidebar-icon { color: #a855f7; transition: 0.3s; cursor: pointer; }
+        .sidebar-icon:hover { color: white; transform: scale(1.1); }
         
-        .active-nav { color: #ffffff; border-left: 3px solid #a855f7; }
-        .nav-item .nav-tooltip {
-            position: absolute;
-            left: 70px;
-            background: #a855f7;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-            white-space: nowrap;
-        }
-        .nav-item:hover .nav-tooltip { opacity: 1; }
-
-        #details-page {
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            transform: translateX(100%);
-        }
-        #details-page.active {
-            transform: translateX(0);
-        }
+        .active-nav { color: white !important; border-left: 3px solid #a855f7; }
     </style>
 </head>
 <body class="overflow-hidden"> 
+
     <div id="welcome-overlay">
         <h1 class="welcome-text">Welcome Raveena Gunawardana</h1>
-        <p class="welcome-subtext">Initializing Your Cinematic Experience</p>
-        <div class="loader-line"></div>
+        <div class="w-48 h-0.5 bg-purple-900 mt-4 overflow-hidden relative">
+            <div class="absolute inset-0 bg-purple-500 animate-[loading_2s_infinite]"></div>
+        </div>
     </div>
+    <style> @keyframes loading { 0% { left: -100%; } 100% { left: 100%; } } </style>
 
-    <div class="fixed top-0 right-0 z-40 flex items-center space-x-6 px-8 py-6 bg-gradient-to-l from-[#0b0214] to-transparent">
+    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0b0214] z-50 border-r border-purple-950">
+        <div class="text-purple-500 text-2xl font-bold italic mb-12">EC</div>
+        <div class="flex flex-col items-center space-y-10">
+            <i class="fa-solid fa-house active-nav pl-2 text-xl cursor-pointer text-gray-500 hover:text-white"></i>
+            <i class="fa-solid fa-film text-xl cursor-pointer text-gray-500 hover:text-white"></i>
+            <i class="fa-solid fa-image text-xl cursor-pointer text-gray-500 hover:text-white"></i>
+            <i class="fa-solid fa-circle-question text-xl cursor-pointer text-gray-500 hover:text-white"></i>
+            <i class="fa-solid fa-magnifying-glass text-xl cursor-pointer text-gray-500 hover:text-white"></i>
+        </div>
+    </nav>
+
+    <div class="fixed top-0 right-0 z-40 flex items-center space-x-6 px-8 py-6">
         <div class="flex items-center space-x-5 border-r border-purple-900 pr-6">
-            <a href="#" class="sidebar-icon"><i class="fa-brands fa-instagram text-xl"></i></a>
-            <a href="#" class="sidebar-icon"><i class="fa-brands fa-facebook text-xl"></i></a>
-            <a href="#" class="sidebar-icon"><i class="fa-brands fa-youtube text-xl"></i></a>
+            <i class="fa-brands fa-instagram sidebar-icon"></i>
+            <i class="fa-brands fa-facebook sidebar-icon"></i>
+            <i class="fa-brands fa-youtube sidebar-icon"></i>
         </div>
         <div class="flex items-center space-x-3 cursor-pointer group">
-            <span class="text-sm font-bold text-purple-300 group-hover:text-white transition">My Account</span>
+            <span class="text-sm font-bold text-purple-300 group-hover:text-white">My Account</span>
             <i class="fa-solid fa-user-circle text-2xl text-purple-500"></i>
         </div>
     </div>
 
-    <nav class="fixed left-0 top-0 h-screen w-20 flex flex-col items-center py-8 bg-[#0b0214] z-50 border-r border-purple-950">
-        <div class="text-purple-500 text-2xl font-bold italic tracking-tighter mb-12">EC</div>
-        <div class="flex flex-col items-center space-y-10 w-full">
-            <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-house text-[#808080] hover:text-white transition-all active-nav pl-2 text-xl"></i>
-                <span class="nav-tooltip">Home</span>
-            </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-film text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
-                <span class="nav-tooltip">Movies</span>
-            </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-image text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
-                <span class="nav-tooltip">Wallpapers</span>
-            </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-circle-question text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
-                <span class="nav-tooltip">Inquiries</span>
-            </div>
-            <div class="nav-item flex flex-col items-center w-full relative">
-                <i class="fa-solid fa-magnifying-glass text-[#808080] hover:text-white transition-all pl-2 text-xl"></i>
-                <span class="nav-tooltip">Search</span>
-            </div>
-        </div>
-    </nav>
-
-    <div id="landing-page">
-        <section class="hero-section" id="hero-section">
-            <div class="overlay">
-                <div class="welcome-content">
-                    <h1>Unlimited Movies & Series</h1>
-                    <p>Download your favorites in 4K Ultra-HD. Watch anywhere</p>
-                    <div class="flex gap-4 max-w-xl">
-                        <input type="email" placeholder="Email address" class="flex-grow p-4 bg-black/50 border border-purple-900 rounded outline-none">
-                        <button class="bg-[#a855f7] px-8 py-4 font-bold rounded hover:bg-[#9333ea] transition" onclick="hideHero()">Get Started &rsaquo;</button>
+    <div id="landing-page" class="ml-20">
+        <section class="landing-hero">
+            <div class="landing-overlay">
+                <div class="max-w-2xl">
+                    <h1 class="text-6xl font-black mb-4">Unlimited Movies & Series.</h1>
+                    <p class="text-xl text-gray-300 mb-8">Download your favorites in 4K Ultra-HD. Watch anywhere.</p>
+                    <div class="flex gap-4">
+                        <input type="email" placeholder="Email address" class="flex-grow p-4 bg-black/60 border border-purple-900 rounded outline-none focus:border-purple-500">
+                        <button onclick="hideHero()" class="bg-[#a855f7] px-8 py-4 font-bold rounded hover:bg-[#9333ea] transition">Get Started &rsaquo;</button>
                     </div>
                 </div>
             </div>
@@ -198,12 +143,9 @@
 
     <div id="home-content" class="ml-20 hidden h-screen overflow-y-auto no-scrollbar">
         <section class="featured-hero px-12">
-            <a href="https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg" target="_blank" class="absolute inset-0 z-0">
-                <img src="https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg" alt="Bloodhounds Season 2" class="w-full h-full object-cover">
-                <div class="gradient-overlay"></div>
-            </a>
-            
-            <div class="relative z-20 max-w-3xl pt-20">
+            <div class="hero-background-media"></div>
+
+            <div class="relative z-20 max-w-3xl mt-20">
                 <div class="flex items-center space-x-2 text-purple-400 font-bold text-xs uppercase tracking-widest mb-4">
                     <i class="fa-solid fa-star text-[10px]"></i>
                     <span>Premium Feature</span>
@@ -217,121 +159,77 @@
                 </div>
                 <p class="text-gray-300 text-lg mb-8 max-w-xl">Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by a feared underground kingpin.</p>
                 <div class="flex space-x-4">
-                    <a href="https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg" target="_blank" class="bg-white text-black px-10 py-3 rounded font-bold flex items-center hover:bg-gray-200 transition">
+                    <button class="bg-white text-black px-10 py-3 rounded font-bold flex items-center hover:bg-gray-200">
                         <i class="fa-solid fa-play mr-2"></i> Play Now
-                    </a>
-                    <button onclick="openDetails(0)" class="bg-white/10 backdrop-blur-md px-10 py-3 rounded font-bold border border-white/20 hover:bg-white/20 transition">Details</button>
+                    </button>
+                    <button class="bg-white/10 backdrop-blur-md px-10 py-3 rounded font-bold border border-white/20 hover:bg-white/20">Details</button>
                 </div>
             </div>
         </section>
-    </div>
 
-    <div id="details-page" class="fixed inset-0 z-[100] bg-[#0b0214] hidden overflow-y-auto">
-        <div class="absolute top-8 left-28 z-[110]">
-            <button onclick="closeDetails()" class="flex items-center space-x-3 text-purple-400 hover:text-white transition group">
-                <i class="fa-solid fa-circle-chevron-left text-3xl"></i>
-                <span class="font-bold uppercase tracking-widest text-sm">Back To Home Page</span>
-            </button>
-        </div>
-
-        <div class="h-[50vh] relative overflow-hidden">
-            <img id="detail-bg" src="" class="w-full h-full object-cover opacity-30 blur-md scale-110">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0214] to-transparent"></div>
-        </div>
-
-        <div class="max-w-6xl mx-auto px-12 -mt-40 relative z-10 pb-20">
-            <div class="flex flex-col md:flex-row gap-12">
-                <div class="w-full md:w-80 flex-shrink-0">
-                    <img id="detail-poster" src="" class="w-full rounded-2xl shadow-2xl border border-purple-900" alt="Poster">
+        <main class="px-12 pb-20">
+            <h3 class="text-2xl font-bold mb-8">Top 10 in Movies</h3>
+            <div id="movie-grid" class="flex space-x-12 overflow-x-auto no-scrollbar pb-10">
                 </div>
-                <div class="flex-grow space-y-6">
-                    <div class="flex items-center space-x-3 text-purple-400 font-bold uppercase text-xs tracking-widest">
-                        <span id="detail-tag"></span>
-                        <span class="text-purple-900">•</span>
-                        <span>Official Release</span>
-                    </div>
-                    <h1 id="detail-title" class="text-6xl font-black tracking-tighter"></h1>
-                    <div class="flex items-center flex-wrap gap-6 text-gray-400 font-medium">
-                        <span class="flex items-center text-yellow-500 font-bold"><i class="fa-solid fa-star mr-2"></i> <span id="detail-rating"></span> IMDb</span>
-                        <span><i class="fa-solid fa-eye mr-2 text-purple-500"></i><span id="detail-views"></span> views</span>
-                        <span class="bg-purple-900 text-white px-2 py-1 rounded text-xs" id="detail-year"></span>
-                    </div>
-                    <p id="detail-genre" class="text-xl text-purple-400 font-medium"></p>
-                    
-                    <div class="bg-purple-950/20 p-6 rounded-xl border border-purple-900/50 space-y-2">
-                        <h4 class="text-purple-500 font-bold uppercase text-xs tracking-widest">Description</h4>
-                        <p id="detail-desc" class="text-gray-200"></p>
-                    </div>
-                    <div class="space-y-4 pt-4">
-                        <h3 class="text-2xl font-bold">Secure Downloads</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition font-bold group border border-purple-900">
-                                <span>Download 480p</span>
-                                <span class="text-xs opacity-60">350MB <i class="fa-solid fa-download ml-2"></i></span>
-                            </a>
-                            <a href="#" class="flex justify-between items-center bg-purple-950/40 hover:bg-purple-600 p-4 rounded-xl transition font-bold group border border-purple-900">
-                                <span>Download 720p</span>
-                                <span class="text-xs opacity-60">650MB <i class="fa-solid fa-download ml-2"></i></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </main>
     </div>
 
     <script>
         const movieData = [
-            { title: "Bloodhounds S2", rating: "8.3", views: "37,920", year: "2026", genre: "Action, Crime, Korea", desc: "Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by a feared underground kingpin.", img: "https://static.digit.in/Netflix-Bloodhound-season-2.png", tag: "Netflix Original" }
+            { img: "https://static.digit.in/Netflix-Bloodhound-season-2.png" },
+            { img: "https://cinesubz.lk/wp-content/uploads/2026/04/yLQQoseay2JXHZO9UVGA53i1HQ.jpg" },
+            { img: "https://static.digit.in/Netflix-Bloodhound-season-2.png" }
         ];
 
         function hideHero() {
             const landing = document.getElementById('landing-page');
             const home = document.getElementById('home-content');
-            landing.style.transform = "translateY(-100%)";
+            
             landing.style.opacity = "0";
+            landing.style.transform = "translateY(-50px)";
+            
             setTimeout(() => {
-                landing.style.display = "none";
+                landing.classList.add('hidden');
                 home.classList.remove('hidden');
                 document.body.style.overflow = "auto";
-            }, 800);
+            }, 600);
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const overlay = document.getElementById('welcome-overlay');
-            setTimeout(() => {
-                overlay.style.opacity = '0';
-                overlay.style.visibility = 'hidden';
-            }, 3500);
+        // Initialize Rankings
+        const grid = document.getElementById('movie-grid');
+        movieData.forEach((movie, i) => {
+            grid.innerHTML += `
+                <div class="flex items-center flex-shrink-0 group cursor-pointer transition-transform hover:scale-105">
+                    <span class="rank-number">${i + 1}</span>
+                    <div class="w-72 h-40 rounded-lg overflow-hidden border-2 border-transparent group-hover:border-purple-500 shadow-2xl">
+                        <img src="${movie.img}" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            `;
         });
 
-        const detailsPage = document.getElementById('details-page');
-
-        function openDetails(index) {
-            const movie = movieData[index];
-            document.getElementById('detail-title').innerText = movie.title + " (" + movie.year + ")";
-            document.getElementById('detail-rating').innerText = movie.rating;
-            document.getElementById('detail-views').innerText = movie.views;
-            document.getElementById('detail-year').innerText = movie.year;
-            document.getElementById('detail-genre').innerText = movie.genre;
-            document.getElementById('detail-desc').innerText = movie.desc;
-            document.getElementById('detail-poster').src = movie.img;
-            document.getElementById('detail-bg').src = movie.img;
-            document.getElementById('detail-tag').innerText = movie.tag;
-            detailsPage.classList.remove('hidden');
+        window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                detailsPage.classList.add('active');
-            }, 10);
-            document.body.style.overflow = 'hidden';
-        }
+                document.getElementById('welcome-overlay').style.opacity = '0';
+                document.getElementById('welcome-overlay').style.visibility = 'hidden';
+            }, 3000);
+        });
 
-        function closeDetails() {
-            detailsPage.classList.remove('active');
-            setTimeout(() => {
-                detailsPage.classList.add('hidden');
-            }, 500);
-            document.body.style.overflow = 'auto';
-        }
+        // Add jQuery background linking logic
+        $(document).ready(function() {
+            // Target the background container
+            $('.hero-background-media').click(function(e) {
+                // To prevent navigating if clicking on buttons within the max-w-3xl content div
+                // we stop propagation from that div to the background
+                if ($(e.target).closest('.relative.z-20.max-w-3xl.mt-20').length) return;
+
+                // Define the destination URL
+                const destinationUrl = "https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg";
+                
+                // Open the link in a new tab
+                window.open(destinationUrl, '_blank');
+            });
+        });
     </script>
 </body>
 </html>
