@@ -68,12 +68,11 @@
         @keyframes loading { 100% { left: 100%; } }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- LANDING HERO SECTION --- */
+        /* --- HERO SECTION STYLES --- */
         .hero-section {
             position: relative;
             height: 100vh;
-            /* Updated background image */
-            background: url('https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg') center/cover no-repeat;
+            background: url('https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg') center/cover no-repeat;
             margin-left: 80px;
             transition: transform 0.8s ease-in-out, opacity 0.6s ease-in-out;
             z-index: 40;
@@ -87,14 +86,19 @@
             padding-left: 60px;
         }
 
-        /* --- HOME FEATURED HERO (BLOODHOUNDS) --- */
+        /* --- HOME FEATURED HERO --- */
         .featured-hero {
+            position: relative;
             height: 100vh;
-            background: linear-gradient(to bottom, transparent, #0b0214), url('https://images.lifestyleasia.com/wp-content/uploads/sites/7/2025/01/16124954/Untitled-design-2025-01-16T124823.913-1600x900.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             padding-left: 60px;
-            position: relative;
+        }
+        .featured-hero .gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, #0b0214);
+            z-index: 10;
         }
 
         .welcome-content h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
@@ -194,7 +198,12 @@
 
     <div id="home-content" class="ml-20 hidden h-screen overflow-y-auto no-scrollbar">
         <section class="featured-hero px-12">
-            <div class="max-w-3xl">
+            <a href="https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg" target="_blank" class="absolute inset-0 z-0">
+                <img src="https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg" alt="Bloodhounds Season 2" class="w-full h-full object-cover">
+                <div class="gradient-overlay"></div>
+            </a>
+            
+            <div class="relative z-20 max-w-3xl pt-20">
                 <div class="flex items-center space-x-2 text-purple-400 font-bold text-xs uppercase tracking-widest mb-4">
                     <i class="fa-solid fa-star text-[10px]"></i>
                     <span>Premium Feature</span>
@@ -208,7 +217,7 @@
                 </div>
                 <p class="text-gray-300 text-lg mb-8 max-w-xl">Gun-woo and Woo-jin return to boxing with dreams of a championship, only to be targeted by a feared underground kingpin.</p>
                 <div class="flex space-x-4">
-                    <a href="https://youtu.be/g4WrSJZD10M" target="_blank" class="bg-white text-black px-10 py-3 rounded font-bold flex items-center hover:bg-gray-200 transition">
+                    <a href="https://www.whats-on-netflix.com/wp-content/uploads/2024/10/bloodhounds-season-2-netflix-q2-2026-release.jpg" target="_blank" class="bg-white text-black px-10 py-3 rounded font-bold flex items-center hover:bg-gray-200 transition">
                         <i class="fa-solid fa-play mr-2"></i> Play Now
                     </a>
                     <button onclick="openDetails(0)" class="bg-white/10 backdrop-blur-md px-10 py-3 rounded font-bold border border-white/20 hover:bg-white/20 transition">Details</button>
